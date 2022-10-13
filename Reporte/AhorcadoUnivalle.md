@@ -9,7 +9,6 @@ Información del **miniproyecto**.
 
   class Pantalla {
     -atributo : void
-    -boton : static
     +método()
   }
 
