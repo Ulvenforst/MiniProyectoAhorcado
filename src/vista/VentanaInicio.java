@@ -50,9 +50,10 @@ public class VentanaInicio extends Ventana {
 		JPanel inputNombre = new JPanel();
 		inputNombre.setLayout(new GridLayout(2, 1));
 		formularioIncio.setLayout(new GridLayout(4, 1, 0, 20));
-		// Añadidos de ventana inicial. 
 		
-		titulo.setFont(new Font("Arial", Font.PLAIN, 30));
+		// Añadidos de ventana inicial. 
+		titulo.setFont(new Font("Arial", Font.PLAIN, 32));
+		nombreLbl.setFont(new Font("Arial", Font.PLAIN, 18));
 		northPanel.add(titulo);
 		inputNombre.add(nombreLbl);
 		inputNombre.add(nombreField);
