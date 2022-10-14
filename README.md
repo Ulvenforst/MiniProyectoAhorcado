@@ -20,8 +20,8 @@ La aplicación a desarrollar deberá contar con las mismas funcionalidades de la
 - Para qué sirve
 
 Debe incluir tambien:
-1. Al iniciar el juego, deberá solicitar el nombre del jugador y deberá permitir seleccionar un listado de temáticas que determinarán las palabras que aparecerán en el momento del juego, por ejemplo: Animales, Colores, Frutas, etc.
-2. El usuario deberá determinar el numero de palabras por ronda que desea adivinar, sin embargo, una vez se consuma una palabra el software deberá preguntarle al usuario si desea continuar. La ronda deberá terminar cuando el usuario así lo desee o cuando se hayan consumido la cantidad de palabras que se configuraron al inicio del juego. Si la ronda termina por el consumo del total de las palabras, el juego deberá preguntar si desea ejecutar otra ronda, de ser así, deberá volver a preguntar por la temática de palabras.
+1. Al iniciar el juego, deberá solicitar el nombre del jugador y deberá permitir seleccionar un listado de temáticas que determinarán las palabras que aparecerán en el momento del juego, por ejemplo: Animales, Colores, Frutas, etc.
+2. El usuario deberá determinar el numero de palabras por ronda que desea adivinar, sin embargo, una vez se consuma una palabra el software deberá preguntarle al usuario si desea continuar. La ronda deberá terminar cuando el usuario así lo desee o cuando se hayan consumido la cantidad de palabras que se configuraron al inicio del juego. Si la ronda termina por el consumo del total de las palabras, el juego deberá preguntar si desea ejecutar otra ronda, de ser así, deberá volver a preguntar por la temática de palabras.
 3. Una vez iniciado el juego, el software deberá informar por palabra a adivinar, la cantidad de intentos ejecutados, la cantidad de intentos totales, la cantidad de intentos restantes también deberá mostrar cuales letras se han utilizado. En la ronda solo deberá aparecer palabras de la temática configurada.
 4. Al finalizar una ronda de palabras, el software deberá desplegar la siguiente estadística:
   - Cantidad de palabras adivinadas y su correspondiente porcentaje.
