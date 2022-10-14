@@ -27,26 +27,9 @@ Licencia: GNU-GPL
 
 package vista;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Image;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-
 public class VentanaInicio extends Ventana {
     // Atributos:
-    private JButton botonJugar;
     
-    // Métodos:
-    public VentanaInicio(){
-        super();
-    }
+    // Constructor:
+    
 }

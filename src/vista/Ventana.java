@@ -50,6 +50,6 @@ public class Ventana extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true); 
         setResizable(false);
-        setLayout(null);             
+        setLayout(null);
     }
 }
