@@ -47,13 +47,16 @@ public class VentanaInicio extends Ventana {
 	// Constructor:
 	public VentanaInicio() {
 		// Configuración de páneles propios.
-		formularioIncio.setLayout(new GridLayout(5, 1, 0, 20));
-
+		JPanel inputNombre = new JPanel();
+		inputNombre.setLayout(new GridLayout(2, 1));
+		formularioIncio.setLayout(new GridLayout(4, 1, 0, 20));
 		// Añadidos de ventana inicial. 
+		
 		titulo.setFont(new Font("Arial", Font.PLAIN, 30));
 		northPanel.add(titulo);
-		formularioIncio.add(nombreLbl);
-		formularioIncio.add(nombreField);
+		inputNombre.add(nombreLbl);
+		inputNombre.add(nombreField);
+		formularioIncio.add(inputNombre);
 		formularioIncio.add(btnJugar);
 		formularioIncio.add(btnInstrucciones);
 		formularioIncio.add(btnParaQueSirve);
