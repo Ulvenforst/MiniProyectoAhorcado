@@ -21,28 +21,35 @@ Licencia: GNU-GPL
 
 package vista;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Image;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
 import javax.swing.*;
 
+public class Ventana extends JFrame{
+    // Páneles distributivos:
+    protected JPanel centerPanel = new JPanel(); 
+    protected JPanel northPanel = new JPanel(); 
+    protected JPanel eastPanel = new JPanel(); 
+    protected JPanel westPanel = new JPanel(); 
+    protected JPanel southPanel = new JPanel(); 
 
-public class Ventana extends JFrame {
-    
     public Ventana(){
-        iniciarComponentes();
-    }
-    
-    protected void iniciarComponentes(){
-        setVisible(true); 
+        setTitle("El Ahorcado - Universidad del Valle");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(850,480);
         setResizable(false);
         setLocationRelativeTo(null);
-        setLayout(null);
-        setTitle("El Ahorcado - Universidad del Valle");
+
+        // Distribución de páneles:
+        centerPanel.setBackground(Color.GRAY);
+        northPanel.setBackground(Color.GRAY);
+        eastPanel.setBackground(Color.GRAY);
+        westPanel.setBackground(Color.GRAY);
+        southPanel.setBackground(Color.GRAY);
+        setLayout(new BorderLayout(15, 15));
+        add(centerPanel, BorderLayout.CENTER);
+        add(northPanel, BorderLayout.NORTH);
+        add(eastPanel, BorderLayout.EAST);
+        add(westPanel, BorderLayout.WEST);
+        add(southPanel, BorderLayout.SOUTH);
     }
 }
