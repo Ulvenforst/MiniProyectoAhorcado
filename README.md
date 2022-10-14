@@ -24,8 +24,8 @@ Debe incluir tambien:
 2. El usuario deberá determinar el numero de palabras por ronda que desea adivinar, sin embargo, una vez se consuma una palabra el software deberá preguntarle al usuario si desea continuar. La ronda deberá terminar cuando el usuario así lo desee o cuando se hayan consumido la cantidad de palabras que se configuraron al inicio del juego. Si la ronda termina por el consumo del total de las palabras, el juego deberá preguntar si desea ejecutar otra ronda, de ser así, deberá volver a preguntar por la temática de palabras.
 3. Una vez iniciado el juego, el software deberá informar por palabra a adivinar, la cantidad de intentos ejecutados, la cantidad de intentos totales, la cantidad de intentos restantes también deberá mostrar cuales letras se han utilizado. En la ronda solo deberá aparecer palabras de la temática configurada.
 4. Al finalizar una ronda de palabras, el software deberá desplegar la siguiente estadística:
-  - Cantidad de palabras adivinadas y su correspondiente porcentaje.
-  - Cantidad de palabras no adivinadas y su correspondiente porcentaje.
+ - Cantidad de palabras adivinadas y su correspondiente porcentaje.
+ - Cantidad de palabras no adivinadas y su correspondiente porcentaje.
 5. Al finalizar el juego deberá aparecer la siguiente estadística:
   - Cantidad de rondas realizadas.
   - Numero de ronda en la que el porcentaje de acierto fue mayor y el porcentaje.
