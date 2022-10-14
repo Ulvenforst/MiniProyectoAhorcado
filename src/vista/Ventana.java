@@ -32,14 +32,12 @@ import java.awt.event.ActionListener;
 
 
 public class Ventana extends JFrame {
-
     
     public Ventana(){
         iniciarComponentes();
     }
     
     protected void iniciarComponentes(){
-
         setTitle("El Ahorcado - Universidad del Valle");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(850,480);
@@ -48,6 +46,4 @@ public class Ventana extends JFrame {
         setResizable(false);
         setLayout(null);             
     }
-
-    
 }
