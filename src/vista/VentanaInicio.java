@@ -32,11 +32,11 @@ import java.awt.event.ActionListener;
 
 
 public class VentanaInicio extends Ventana {
+    // Atributos:
     private JButton botonJugar;
     
+    // Métodos:
     public VentanaInicio(){
         super();
     }
-    
-    
 }
