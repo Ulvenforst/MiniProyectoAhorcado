@@ -17,33 +17,22 @@ Licencia: GNU-GPL
 
 package vista;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Image;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
+import javax.swing.*;
 
 
 public class Ventana extends JFrame {
     
-    public Ventana(){
-        iniciarComponentes();
-    }
-    
+    protected JFrame ventana; 
+        
     protected void iniciarComponentes(){
-        setTitle("El Ahorcado - Universidad del Valle");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(850,480);
-        setLocationRelativeTo(null);
-        setVisible(true); 
-        setResizable(false);
-        setLayout(null);             
+        ventana = new JFrame();
+        ventana.setTitle("El Ahorcado - Universidad del Valle");
+        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana.setSize(750,500);
+        ventana.setLayout(new BorderLayout());
+        ventana.setLocationRelativeTo(null);
+        ventana.setVisible(true); 
+//        ventana.setResizable(false);       
     }
 }
