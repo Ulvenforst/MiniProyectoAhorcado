@@ -46,7 +46,7 @@ public class VentanaInicio extends Ventana {
         super.iniciarComponentes();
         
         panelSuperior = new JPanel();
-        panelSuperior.setBackground(new Color(129, 164, 181));
+        panelSuperior.setBackground(new Color(226, 201, 99));
         panelSuperior.setPreferredSize(new Dimension(100, 90));
         panelSuperior.setLayout(new GridLayout(4, 1));
         
@@ -59,11 +59,11 @@ public class VentanaInicio extends Ventana {
 
         
         labelTitulo = new JLabel("El Ahorcado", SwingConstants.CENTER);
-        labelTitulo.setForeground(new Color(30, 20, 20));
+        labelTitulo.setForeground(new Color(20, 7, 7));
         labelTitulo.setFont(new Font("Monospaced", Font.BOLD, 50));
         
         labelSubtitulo = new JLabel("Universidad del Valle", SwingConstants.CENTER);
-        labelSubtitulo.setForeground(new Color(30, 20, 20));
+        labelSubtitulo.setForeground(new Color(20, 7, 7));
         labelTitulo.setFont(new Font("Arial", Font.BOLD, 30));
         
         panelSuperior.add(new JLabel(""));
@@ -72,7 +72,7 @@ public class VentanaInicio extends Ventana {
         panelSuperior.add(new JLabel(""));
 
         labelNombre = new JLabel("Ingrese su nombre: ", SwingConstants.LEFT);
-        labelNombre.setForeground(new Color(0, 88, 176)); //0,88,176
+        labelNombre.setForeground(new Color(0, 0, 0)); //0,88,176
         labelNombre.setFont(new Font("Arial", Font.BOLD, 22));
         labelNombre.setBounds(270, 20, 240, 100);
         
