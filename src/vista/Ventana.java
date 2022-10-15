@@ -49,7 +49,6 @@ public abstract class Ventana extends JFrame implements ActionListener{
         eastPanel.setBackground(new Color(0, 0, 0, 0));
         westPanel.setBackground(new Color(0, 0, 0, 0));
         southPanel.setBackground(new Color(0, 0, 0, 0));
-        northPanel.setPreferredSize(new Dimension(100, 90));
         setLayout(new BorderLayout(15, 15));
         add(centerPanel, BorderLayout.CENTER);
         add(northPanel, BorderLayout.NORTH);
