@@ -18,10 +18,11 @@ Licencia: GNU-GPL
 package vista;
 
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 
 
-public class Ventana extends JFrame {
+public abstract class Ventana extends JFrame implements ActionListener {
     
     protected JFrame ventana; 
         
@@ -33,6 +34,8 @@ public class Ventana extends JFrame {
         ventana.setLayout(new BorderLayout());
         ventana.setLocationRelativeTo(null);
         ventana.setVisible(true); 
-//        ventana.setResizable(false);       
+//        ventana.setResizable(false);  
     }
+    
+    public abstract void actionPerformed(ActionEvent evento);
 }

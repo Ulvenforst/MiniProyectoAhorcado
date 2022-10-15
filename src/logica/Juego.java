@@ -1,5 +1,5 @@
 /*
-Archivo: Principal.java
+Archivo: Juego.java
 
 Proyecto 1 - El ahorcado
 
@@ -14,14 +14,15 @@ Ing. M.Sc. Luis Yovany Romo Portilla
 
 Licencia: GNU-GPL
 */
+package logica;
 
-package vista;
-
-import javax.swing.JFrame;
-
-public class Principal {
-    public static void main(String[] args) {
-        VentanaInicio ventanaInicio = new VentanaInicio();
-        ventanaInicio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);      
+public class Juego {
+    //Atributos:
+    private Jugador jugador;
+    
+    //Métodos:
+    public Juego(Jugador jugador) {
+        this.jugador = jugador;
     }
+    
 }

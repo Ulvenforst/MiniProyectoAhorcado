@@ -17,8 +17,10 @@ Licencia: GNU-GPL
 
 package vista;
 
+import logica.*;
+
 import java.awt.*;
-import java.util.HashSet;
+import java.awt.event.*;
 import javax.swing.*;
 
 
@@ -26,10 +28,13 @@ public class VentanaInicio extends Ventana {
     // Atributos:
     private JPanel panelSuperior;
     private JPanel panelContenido;
+    
     private JLabel labelTitulo;
     private JLabel labelSubtitulo;
     private JLabel labelNombre;
-    private JTextField textNombre;
+    
+    private JTextField textoNombre;
+    
     private JButton botonJugar;
     private JButton botonInstrucciones;
     private JButton botonParaQueSirve;
@@ -76,29 +81,50 @@ public class VentanaInicio extends Ventana {
         labelNombre.setFont(new Font("Arial", Font.BOLD, 22));
         labelNombre.setBounds(270, 20, 240, 100);
         
-        textNombre = new JTextField("");
-        textNombre.setHorizontalAlignment(JTextField.CENTER);
-        textNombre.setForeground(Color.BLACK);
-        textNombre.setFont(new Font("Arial", Font.BOLD, 20));
-        textNombre.setBounds(210, 100, 330, 40);
+        textoNombre = new JTextField("");
+        textoNombre.setHorizontalAlignment(JTextField.CENTER);
+        textoNombre.setForeground(Color.BLACK);
+        textoNombre.setFont(new Font("Arial", Font.BOLD, 20));
+        textoNombre.setBounds(210, 100, 330, 40);
         
         botonJugar = new JButton("JUGAR");
         botonJugar.setBounds(280, 160, 200, 50);
+        botonJugar.addActionListener(this);
         
         botonInstrucciones = new JButton("INSTRUCCIONES");
         botonInstrucciones.setBounds(280, 220, 200, 50);
+        botonInstrucciones.addActionListener(this);
         
         botonParaQueSirve= new JButton("¿PARA QUÉ SIRVE?");
         botonParaQueSirve.setBounds(280, 280, 200, 50);
+        botonParaQueSirve.addActionListener(this);
         
         panelContenido.add(labelNombre);
-        panelContenido.add(textNombre);
+        panelContenido.add(textoNombre);
         panelContenido.add(botonJugar);
         panelContenido.add(botonInstrucciones);
         panelContenido.add(botonParaQueSirve);
+    }
+    
+    @Override
+    public void actionPerformed(ActionEvent evento){
+        if (evento.getSource() == botonJugar)
+            iniciarJuego();
         
+    }
+    
+    public void iniciarJuego(){
+        String nombreJugador = textoNombre.getText();
         
-        
-        
+        if(!nombreJugador.trim().isEmpty() || nombreJugador.trim().length() > 0){
+            Jugador jugador = new Jugador(nombreJugador);
+            Juego juego = new Juego(jugador);
+            ventana.dispose(); 
+            VentanaTematicas ventanaTematicas = new VentanaTematicas(juego);
+            
+        } else {
+            JOptionPane.showMessageDialog(null,"Por favor ingrese su nombre", "Advertencia", JOptionPane.ERROR_MESSAGE);
+            textoNombre.requestFocusInWindow();
+        }
     }
 }
