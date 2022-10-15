@@ -76,8 +76,8 @@ public class VentanaInicio extends Ventana {
         panelFormularioIncio.add(buttonParaQueSirve);
         centerPanel.add(panelFormularioIncio);
 		
-		// Mostrar Pantalla Inicial.
-		setVisible(true);
+	// Mostrar Pantalla Inicial.
+        setVisible(true);
 	}
 
     // Métodos
