@@ -106,7 +106,7 @@ public class VentanaInicio extends Ventana {
             JOptionPane.showMessageDialog(null,"Por favor ingrese su nombre", "Advertencia", JOptionPane.ERROR_MESSAGE);
             fieldNombre.requestFocusInWindow();
             
-        } else if (!nombreJugador.matches("[a-zA-Z]+")){
+        } else if (!nombreJugador.matches("[a-zA-Z ]+")){
             JOptionPane.showMessageDialog(null,"Por favor solamente ingrese letras", "Advertencia", JOptionPane.ERROR_MESSAGE);
             fieldNombre.setText("");
             fieldNombre.requestFocusInWindow();
