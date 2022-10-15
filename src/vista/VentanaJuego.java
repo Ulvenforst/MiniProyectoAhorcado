@@ -39,13 +39,14 @@ public class VentanaJuego extends Ventana {
     private JPanel rejillaEstadisticas = new JPanel();
     private JPanel rejillaAbecedario = new JPanel();
     private JPanel cajaButton = new JPanel();
+    private JPanel cajaPalabraAdivinar = new JPanel();
 
 	private JLabel intentosTotales = new JLabel("Intentos Totales:");
 	private JLabel intentosRestantes = new JLabel("Intentos Restantes:");
 	private JLabel intentosEjecutados = new JLabel("Intentos Ejecutados:");
 
     // CAMBIAR LÍNEA DE CÓDIGO!!
-    private JTextField palabraAdivinar = new JTextField();
+    private JLabel palabraAdivinar = new JLabel("___ ___ ___ ___ ___");
     private JButton abecedario[] = new JButton[27];
     private JButton buttonSalir = new JButton("Salir");
     
@@ -56,11 +57,11 @@ public class VentanaJuego extends Ventana {
 		
         // Configuración de páneles propios.
         rejillaGeneral.setPreferredSize(new Dimension(776, 385));
-        centerPanel.setBackground(Color.GRAY);
-        rejillaGeneral.setBackground(Color.BLUE);
-        cajaButton.setBackground(Color.yellow);
-        interaccionJugador.setBackground(Color.RED);
-        graficaAhorcado.setBackground(Color.orange);
+        // centerPanel.setBackground(Color.GRAY);
+        // rejillaGeneral.setBackground(Color.BLUE);
+        // cajaButton.setBackground(Color.yellow);
+        // interaccionJugador.setBackground(Color.RED);
+        // graficaAhorcado.setBackground(Color.orange);
         rejillaEstadisticas.setLayout(new GridLayout(3, 1));
         rejillaGeneral.setLayout(new GridLayout(1, 2));
         rejillaAbecedario.setLayout(new GridLayout(3, 9, 2, 2));
@@ -81,6 +82,8 @@ public class VentanaJuego extends Ventana {
         }
 
         // Añadidos de ventana inicial. 
+        palabraAdivinar.setHorizontalAlignment(JLabel.CENTER);
+        cajaPalabraAdivinar.add(palabraAdivinar);
         cajaButton.add(buttonSalir);
         rejillaEstadisticas.add(intentosTotales);
         rejillaEstadisticas.add(intentosRestantes);
