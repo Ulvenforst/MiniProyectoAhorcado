@@ -11,14 +11,14 @@ Licencia: GNU-GPL
 */
 
 /**
-  HISTORIA: Se realizará un juego de ahorcado el cual permita elegir la categoría de palabras
-  que se quieren adivinar. Este juego preguntará el numbre del participante antes de iniciar,
-  para posteriormente darle a seleccionar el número de palabras que desea adivinar y la respectiva
-  categoría. Cuando se hayan consumido las palabras se preguntará si desea continuar o no;
-  si se desea continuar se volverá a preguntar el número de palabras y la categoría seleccionada
-  para la siguiente ronda; si no desea continuar se mostrarán las estadísticas de juego. En la
-  VentanaInicio podrá ir a respectivas ventanas que informen de las instrucciones y el objetivo
-  educativo de la aplicación.
+    HISTORIA: Se realizará un juego de ahorcado el cual permita elegir la categoría de palabras
+    que se quieren adivinar. Este juego preguntará el numbre del participante antes de iniciar,
+    para posteriormente darle a seleccionar el número de palabras que desea adivinar y la respectiva
+    categoría. Cuando se hayan consumido las palabras se preguntará si desea continuar o no;
+    si se desea continuar se volverá a preguntar el número de palabras y la categoría seleccionada
+    para la siguiente ronda; si no desea continuar se mostrarán las estadísticas de juego. En la
+    VentanaInicio podrá ir a respectivas ventanas que informen de las instrucciones y el objetivo
+    educativo de la aplicación.
 */
 
 package vista;
