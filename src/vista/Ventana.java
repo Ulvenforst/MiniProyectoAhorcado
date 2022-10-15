@@ -1,22 +1,24 @@
 /*
-Archivo: Ventana.java
-Fundamentos de Programación Orientada a Eventos - 750014C Grupo 01
-Proyecto 1 - El ahorcado
+    Archivo: Ventana.java
+    Fundamentos de Programación Orientada a Eventos - 750014C Grupo 01
+    Proyecto 1 - El ahorcado
 
-Autores: 
-Juan Camilo Narvaez Tascon - juan.narvaez.tascon@correounivalle.edu.co - 2140112-3743
-Christian David Vargas Gutiérrez - vargas.christian@correounivalle.edu.co - 2179172-3743
+    Autores: 
+    Juan Camilo Narvaez Tascon - juan.narvaez.tascon@correounivalle.edu.co - 2140112-3743
+    Christian David Vargas Gutiérrez - vargas.christian@correounivalle.edu.co - 2179172-3743
 
-Profesor:
-Ing. M.Sc. Luis Yovany Romo Portilla
+    Profesor:
+    Ing. M.Sc. Luis Yovany Romo Portilla
 
-Licencia: GNU-GPL
+    Licencia: GNU-GPL
 */
 
 /**
-  CLASE: Ventana
-  INTENCIÓN: Esta clase definirá los valores iniciales de todas las ventanas hijas.
-  RELACIONES: -por definir-
+    CLASE: Ventana
+    INTENCIÓN: Esta clase definirá los valores iniciales de todas las ventanas hijas.
+    RELACIONES:
+    -Es un JFrame. 
+    -Implementa la interfaz ActionListener, del paquete awt.event.
 */
 
 package vista;
@@ -26,8 +28,8 @@ import java.awt.event.*;
 import javax.swing.*;
 
 
-    public abstract class Ventana extends JFrame implements ActionListener{
-      // Páneles distributivos:
+public abstract class Ventana extends JFrame implements ActionListener{
+    // Páneles distributivos:
     protected JPanel centerPanel = new JPanel(); 
     protected JPanel northPanel = new JPanel(); 
     protected JPanel eastPanel = new JPanel(); 

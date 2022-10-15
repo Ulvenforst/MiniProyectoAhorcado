@@ -1,22 +1,23 @@
 /*
-Archivo: Juego.java
-Fundamentos de Programación Orientada a Eventos - 750014C Grupo 01
-Proyecto 1 - El ahorcado
+    Archivo: Juego.java
+    Fundamentos de Programación Orientada a Eventos - 750014C Grupo 01
+    Proyecto 1 - El ahorcado
 
-Autores: 
-Juan Camilo Narvaez Tascon - juan.narvaez.tascon@correounivalle.edu.co - 2140112-3743
-Christian David Vargas Gutiérrez - vargas.christian@correounivalle.edu.co - 2179172-3743
+    Autores: 
+    Juan Camilo Narvaez Tascon - juan.narvaez.tascon@correounivalle.edu.co - 2140112-3743
+    Christian David Vargas Gutiérrez - vargas.christian@correounivalle.edu.co - 2179172-3743
 
-Profesor:
-Ing. M.Sc. Luis Yovany Romo Portilla
+    Profesor:
+    Ing. M.Sc. Luis Yovany Romo Portilla
 
-Licencia: GNU-GPL
+    Licencia: GNU-GPL
 */
 
 /**
-	CLASE: Juego
-	INTENCIÓN: Esta clase se encargará de implementar la lógica del juego ahorcado.
-	RELACIONES: -por definir-
+    CLASE: Juego
+    INTENCIÓN: Esta clase se encargará de implementar la lógica del juego ahorcado.
+    RELACIONES:
+    -Por definir
 */
 
 package logica;

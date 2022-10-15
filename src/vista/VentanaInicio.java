@@ -1,100 +1,113 @@
 /*
-Archivo: VentanaInicio.java
-Fundamentos de Programación Orientada a Eventos - 750014C Grupo 01
-Proyecto 1 - El ahorcado
+    Archivo: VentanaInicio.java
+    Fundamentos de Programación Orientada a Eventos - 750014C Grupo 01
+    Proyecto 1 - El ahorcado
 
-Autores: 
-Juan Camilo Narvaez Tascon - juan.narvaez.tascon@correounivalle.edu.co - 2140112-3743
-Christian David Vargas Gutiérrez - vargas.christian@correounivalle.edu.co - 2179172-3743
+    Autores: 
+    Juan Camilo Narvaez Tascon - juan.narvaez.tascon@correounivalle.edu.co - 2140112-3743
+    Christian David Vargas Gutiérrez - vargas.christian@correounivalle.edu.co - 2179172-3743
 
-Profesor:
-Ing. M.Sc. Luis Yovany Romo Portilla
+    Profesor:
+    Ing. M.Sc. Luis Yovany Romo Portilla
 
-Licencia: GNU-GPL
-*/
+    Licencia: GNU-GPL
+ */
 
 /**
-	CLASE: VentanaInicio
-	INTENCIÓN: Pantalla de inicio donde se registrará el nombre del usuario
-	que desea jugar. El usuario podrá seleccionar uno de tres botones: Jugar,
-	Instrucciones, Para qué sirve. Si no hay un nombre de usuario registrado
-	entonces no podrá acceder a «Jugar».
-	RELACIONES:
-	- Es una Ventana.
-*/
+    CLASE: VentanaInicio
+    INTENCIÓN: Pantalla de inicio donde se registrará el nombre del usuario
+    que desea jugar. El usuario podrá seleccionar uno de tres botones: Jugar,
+    Instrucciones, Para qué sirve. Si no hay un nombre de usuario registrado
+    entonces no podrá acceder a «Jugar».
+    RELACIONES:
+    -Es una Ventana.
+ */
 
 package vista;
+
+import logica.*;
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import logica.*;
 
 public class VentanaInicio extends Ventana {
-	// Atributos:
-	private JLabel titulo = new JLabel("El Ahorcado");
-	private JLabel subtitulo = new JLabel("Universidad del Valle");
-	private JLabel nombreLbl = new JLabel("Ingrese su nombre:");
-	private JPanel inputNombre = new JPanel();
-	private JPanel cabecera = new JPanel();
-	private JPanel formularioIncio = new JPanel();
-	private JTextField nombreField = new JTextField();
-	private JButton btnJugar = new JButton("Jugar");
-	private JButton btnInstrucciones = new JButton("Instrucciones");
-	private JButton btnParaQueSirve = new JButton("¿Para qué sirve?");
+    // Atributos:
+    private JLabel labelTitulo = new JLabel("El Ahorcado");
+    private JLabel labelSubtitulo = new JLabel("Universidad del Valle");
+    private JLabel labelNombre = new JLabel("Ingrese su nombre:");
+    private JPanel panelInputNombre = new JPanel();
+    private JPanel panelCabecera = new JPanel();
+    private JPanel panelFormularioIncio = new JPanel();
+    private JTextField fieldNombre = new JTextField();
+    private JButton buttonJugar = new JButton("Jugar");
+    private JButton buttonInstrucciones = new JButton("Instrucciones");
+    private JButton buttonParaQueSirve = new JButton("¿Para qué sirve?");
 		
 	// Constructor:
 	public VentanaInicio() {
-		// Listeners
-		btnJugar.addActionListener(this);
+        // Listeners:
+        buttonJugar.addActionListener(this);
+        buttonInstrucciones.addActionListener(this);
+        buttonParaQueSirve.addActionListener(this);
 
-		// Configuración de páneles propios.
-		northPanel.setBackground(new Color(226, 201, 99));
-		inputNombre.setLayout(new GridLayout(2, 1));
-		cabecera.setLayout(new GridLayout(2, 1));
-		cabecera.setBackground(new Color(0, 0, 0, 0));
-		formularioIncio.setLayout(new GridLayout(4, 1, 0, 20));
-		
-		// Añadidos de ventana inicial. 
-		titulo.setFont(new Font("Arial", Font.PLAIN, 34));
-		titulo.setHorizontalAlignment(JLabel.CENTER);
-		subtitulo.setFont(new Font("Arial", Font.PLAIN, 16));
-		subtitulo.setHorizontalAlignment(JLabel.CENTER);
-		nombreLbl.setFont(new Font("Arial", Font.PLAIN, 18));
-		cabecera.add(titulo);
-		cabecera.add(subtitulo);
-		northPanel.add(cabecera);
-		inputNombre.add(nombreLbl);
-		inputNombre.add(nombreField);
-		formularioIncio.setPreferredSize(new Dimension(180, 250));
-		formularioIncio.add(inputNombre);
-		formularioIncio.add(btnJugar);
-		formularioIncio.add(btnInstrucciones);
-		formularioIncio.add(btnParaQueSirve);
-		centerPanel.add(formularioIncio);
+        // Configuración de páneles propios.
+        northPanel.setBackground(new Color(226, 201, 99));
+        panelInputNombre.setLayout(new GridLayout(2, 1));
+        panelCabecera.setLayout(new GridLayout(2, 1));
+        panelCabecera.setBackground(new Color(0, 0, 0, 0));
+        panelFormularioIncio.setLayout(new GridLayout(4, 1, 0, 20));
+
+        // Añadidos de ventana inicial. 
+        labelTitulo.setFont(new Font("Arial", Font.BOLD, 34));
+        labelTitulo.setHorizontalAlignment(JLabel.CENTER);
+        labelSubtitulo.setFont(new Font("Arial", Font.BOLD, 16));
+        labelSubtitulo.setHorizontalAlignment(JLabel.CENTER);
+        labelNombre.setFont(new Font("Arial", Font.PLAIN, 18));
+        panelCabecera.add(labelTitulo);
+        panelCabecera.add(labelSubtitulo);
+        northPanel.add(panelCabecera);
+        panelInputNombre.add(labelNombre);
+        panelInputNombre.add(fieldNombre);
+        panelFormularioIncio.setPreferredSize(new Dimension(180, 250));
+        panelFormularioIncio.add(panelInputNombre);
+        panelFormularioIncio.add(buttonJugar);
+        panelFormularioIncio.add(buttonInstrucciones);
+        panelFormularioIncio.add(buttonParaQueSirve);
+        centerPanel.add(panelFormularioIncio);
 		
 		// Mostrar Pantalla Inicial.
 		setVisible(true);
 	}
 
-	@Override
+    // Métodos
+    @Override
     public void actionPerformed(ActionEvent evento){
-        if (evento.getSource() == btnJugar)
+        if (evento.getSource() == buttonJugar){
             iniciarJuego();
+
+        } else if (evento.getSource() == buttonInstrucciones){
+            dispose();
+//            ventanaInstrucciones ventanaInstrucciones = new VentanaInstrucciones();
+            
+        } else if (evento.getSource() == buttonParaQueSirve){
+            dispose();
+//            ventanaInformacion ventanaInformacion = new VentanaInformacion();
+        }
     }
     
     public void iniciarJuego(){
-        String nombreJugador = nombreField.getText();
+        String nombreJugador = fieldNombre.getText();
         
         if(!nombreJugador.trim().isEmpty() || nombreJugador.trim().length() > 0){
             Jugador jugador = new Jugador(nombreJugador);
             Juego juego = new Juego(jugador);
             dispose(); 
             VentanaTematicas ventanaTematicas = new VentanaTematicas(juego);
-            
+
         } else {
             JOptionPane.showMessageDialog(null,"Por favor ingrese su nombre", "Advertencia", JOptionPane.ERROR_MESSAGE);
-            nombreField.requestFocusInWindow();
+            fieldNombre.requestFocusInWindow();
         }
     }
 }
