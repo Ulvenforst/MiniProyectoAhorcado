@@ -40,11 +40,12 @@ public class Ventana extends JFrame{
         setLocationRelativeTo(null);
 
         // Distribución de páneles:
-        centerPanel.setBackground(Color.GRAY);
-        northPanel.setBackground(Color.GRAY);
-        eastPanel.setBackground(Color.GRAY);
-        westPanel.setBackground(Color.GRAY);
-        southPanel.setBackground(Color.GRAY);
+        // centerPanel.setBackground(Color.GRAY);
+        // northPanel.setBackground(Color.GRAY);
+        // eastPanel.setBackground(Color.GRAY);
+        // westPanel.setBackground(Color.GRAY);
+        // southPanel.setBackground(Color.GRAY);
+        northPanel.setPreferredSize(new Dimension(100, 90));
         setLayout(new BorderLayout(15, 15));
         add(centerPanel, BorderLayout.CENTER);
         add(northPanel, BorderLayout.NORTH);

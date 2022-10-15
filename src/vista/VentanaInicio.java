@@ -26,7 +26,7 @@ Licencia: GNU-GPL
 package vista;
 
 import java.awt.GridLayout;
-import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.JButton;
@@ -37,6 +37,7 @@ import javax.swing.JTextField;
 public class VentanaInicio extends Ventana {
 	// Atributos:
 	private JLabel nombreLbl = new JLabel("Nombre:");
+	private JPanel inputNombre = new JPanel();
 	private JPanel formularioIncio = new JPanel();
 	private JTextField nombreField = new JTextField();
 	private JLabel titulo = new JLabel("Ahorcado Univalle");
@@ -47,11 +48,14 @@ public class VentanaInicio extends Ventana {
 	// Constructor:
 	public VentanaInicio() {
 		// Configuración de páneles propios.
-		JPanel inputNombre = new JPanel();
 		inputNombre.setLayout(new GridLayout(2, 1));
 		formularioIncio.setLayout(new GridLayout(4, 1, 0, 20));
 		
 		// Añadidos de ventana inicial. 
+		titulo.setPreferredSize(new Dimension(350, 85));
+		titulo.setHorizontalAlignment(JLabel.CENTER);
+		titulo.setVerticalAlignment(JLabel.CENTER);
+
 		titulo.setFont(new Font("Arial", Font.PLAIN, 32));
 		nombreLbl.setFont(new Font("Arial", Font.PLAIN, 18));
 		northPanel.add(titulo);
