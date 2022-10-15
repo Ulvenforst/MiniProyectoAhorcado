@@ -56,9 +56,6 @@ public class VentanaInicio extends Ventana {
 		cabecera.setBackground(new Color(0, 0, 0, 0));
 		formularioIncio.setLayout(new GridLayout(4, 1, 0, 20));
 		
-		// Mejoras visuales.
-		
-		
 		// Añadidos de ventana inicial. 
 		titulo.setFont(new Font("Arial", Font.PLAIN, 34));
 		titulo.setHorizontalAlignment(JLabel.CENTER);
