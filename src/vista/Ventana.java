@@ -55,6 +55,6 @@ public abstract class Ventana extends JFrame implements ActionListener{
         add(northPanel, BorderLayout.NORTH);
         add(eastPanel, BorderLayout.EAST);
         add(westPanel, BorderLayout.WEST);
-        add(southPanel, BorderLayout.SOUTH);
+        add(southPanel, BorderLayout.SOUTH); 
     }
 }
