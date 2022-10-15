@@ -50,8 +50,9 @@ public class VentanaInicio extends Ventana {
         buttonJugar.addActionListener(this);
         buttonInstrucciones.addActionListener(this);
         buttonParaQueSirve.addActionListener(this);
-
+		
         // Configuración de páneles propios.
+        northPanel.setPreferredSize(new Dimension(100, 90));
         northPanel.setBackground(new Color(226, 201, 99));
         panelInputNombre.setLayout(new GridLayout(2, 1));
         panelCabecera.setLayout(new GridLayout(2, 1));
@@ -76,7 +77,7 @@ public class VentanaInicio extends Ventana {
         panelFormularioIncio.add(buttonParaQueSirve);
         centerPanel.add(panelFormularioIncio);
 		
-	// Mostrar Pantalla Inicial.
+		// Mostrar Pantalla Inicial.
         setVisible(true);
 	}
 
@@ -88,11 +89,11 @@ public class VentanaInicio extends Ventana {
 
         } else if (evento.getSource() == buttonInstrucciones){
             dispose();
-//            ventanaInstrucciones ventanaInstrucciones = new VentanaInstrucciones();
+		// ventanaInstrucciones ventanaInstrucciones = new VentanaInstrucciones();
             
         } else if (evento.getSource() == buttonParaQueSirve){
             dispose();
-//            ventanaInformacion ventanaInformacion = new VentanaInformacion();
+		// ventanaInformacion ventanaInformacion = new VentanaInformacion();
         }
     }
     
