@@ -44,13 +44,13 @@ public class VentanaInicio extends Ventana {
     private JButton buttonInstrucciones = new JButton("Instrucciones");
     private JButton buttonParaQueSirve = new JButton("¿Para qué sirve?");
 		
-	// Constructor:
-	public VentanaInicio() {
+    // Constructor:
+    public VentanaInicio() {
         // Listeners:
         buttonJugar.addActionListener(this);
         buttonInstrucciones.addActionListener(this);
         buttonParaQueSirve.addActionListener(this);
-		
+
         // Configuración de páneles propios.
         northPanel.setPreferredSize(new Dimension(100, 90));
         northPanel.setBackground(new Color(226, 201, 99));
@@ -69,6 +69,8 @@ public class VentanaInicio extends Ventana {
         panelCabecera.add(labelTitulo);
         panelCabecera.add(labelSubtitulo);
         northPanel.add(panelCabecera);
+        fieldNombre.setHorizontalAlignment(JTextField.CENTER);
+        fieldNombre.setFont(new Font("Arial", Font.PLAIN, 14));
         panelInputNombre.add(labelNombre);
         panelInputNombre.add(fieldNombre);
         panelFormularioIncio.add(panelInputNombre);
@@ -76,10 +78,10 @@ public class VentanaInicio extends Ventana {
         panelFormularioIncio.add(buttonInstrucciones);
         panelFormularioIncio.add(buttonParaQueSirve);
         centerPanel.add(panelFormularioIncio);
-		
-		// Mostrar Pantalla Inicial.
+
+        // Mostrar Pantalla Inicial.
         setVisible(true);
-	}
+    }
 
     // Métodos
     @Override
@@ -89,26 +91,31 @@ public class VentanaInicio extends Ventana {
 
         } else if (evento.getSource() == buttonInstrucciones){
             dispose();
-		// ventanaInstrucciones ventanaInstrucciones = new VentanaInstrucciones();
+            // ventanaInstrucciones ventanaInstrucciones = new VentanaInstrucciones();
             
         } else if (evento.getSource() == buttonParaQueSirve){
             dispose();
-		// ventanaInformacion ventanaInformacion = new VentanaInformacion();
+            // ventanaInformacion ventanaInformacion = new VentanaInformacion();
         }
     }
     
     public void iniciarJuego(){
         String nombreJugador = fieldNombre.getText();
         
-        if(!nombreJugador.trim().isEmpty() || nombreJugador.trim().length() > 0){
+        if(nombreJugador.trim().isEmpty() || nombreJugador.trim().length() == 0){
+            JOptionPane.showMessageDialog(null,"Por favor ingrese su nombre", "Advertencia", JOptionPane.ERROR_MESSAGE);
+            fieldNombre.requestFocusInWindow();
+            
+        } else if (!nombreJugador.matches("[a-zA-Z]+")){
+            JOptionPane.showMessageDialog(null,"Por favor solamente ingrese letras", "Advertencia", JOptionPane.ERROR_MESSAGE);
+            fieldNombre.setText("");
+            fieldNombre.requestFocusInWindow();
+            
+        } else {
             Jugador jugador = new Jugador(nombreJugador);
             Juego juego = new Juego(jugador);
             dispose(); 
             VentanaTematicas ventanaTematicas = new VentanaTematicas(juego);
-
-        } else {
-            JOptionPane.showMessageDialog(null,"Por favor ingrese su nombre", "Advertencia", JOptionPane.ERROR_MESSAGE);
-            fieldNombre.requestFocusInWindow();
         }
     }
 }
