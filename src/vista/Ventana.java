@@ -1,56 +1,36 @@
 /*
 Archivo: Ventana.java
-Fundamentos de Programación Orientada a Eventos - 750014C Grupo 01
 Proyecto 1 - El ahorcado
-
 Autores: 
-Juan Camilo Narvaez Tascon - juan.narvaez.tascon@correounivalle.edu.co - 2140112-3743
+Juan Camilo Narvaez Tascon - juan.narvaez.tascon@correounivalle.edu.co - 
 Christian David Vargas Gutiérrez - vargas.christian@correounivalle.edu.co - 2179172-3743
-
+Fundamentos de Programación Orientada a Eventos - 750014C Grupo 01
 Profesor:
 Ing. M.Sc. Luis Yovany Romo Portilla
-
 Licencia: GNU-GPL
-*/
-
-/**
-  CLASE: Ventana
-  INTENCIÓN: Esta clase definirá los valores iniciales de todas las ventanas hijas.
-  RELACIONES: -por definir-
 */
 
 package vista;
 
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 
-public class Ventana extends JFrame{
-    // Páneles distributivos:
-    protected JPanel centerPanel = new JPanel(); 
-    protected JPanel northPanel = new JPanel(); 
-    protected JPanel eastPanel = new JPanel(); 
-    protected JPanel westPanel = new JPanel(); 
-    protected JPanel southPanel = new JPanel(); 
 
-    public Ventana(){
-        setTitle("El Ahorcado - Universidad del Valle");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(850,480);
-        setResizable(false);
-        setLocationRelativeTo(null);
-
-        // Distribución de páneles:
-        // centerPanel.setBackground(Color.GRAY);
-        // northPanel.setBackground(Color.GRAY);
-        // eastPanel.setBackground(Color.GRAY);
-        // westPanel.setBackground(Color.GRAY);
-        // southPanel.setBackground(Color.GRAY);
-        northPanel.setPreferredSize(new Dimension(100, 90));
-        setLayout(new BorderLayout(15, 15));
-        add(centerPanel, BorderLayout.CENTER);
-        add(northPanel, BorderLayout.NORTH);
-        add(eastPanel, BorderLayout.EAST);
-        add(westPanel, BorderLayout.WEST);
-        add(southPanel, BorderLayout.SOUTH);
+public abstract class Ventana extends JFrame implements ActionListener {
+    
+    protected JFrame ventana; 
+        
+    protected void iniciarComponentes(){
+        ventana = new JFrame();
+        ventana.setTitle("El Ahorcado - Universidad del Valle");
+        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana.setSize(750,500);
+        ventana.setLayout(new BorderLayout());
+        ventana.setLocationRelativeTo(null);
+        ventana.setVisible(true); 
+//        ventana.setResizable(false);  
     }
+    
+    public abstract void actionPerformed(ActionEvent evento);
 }
