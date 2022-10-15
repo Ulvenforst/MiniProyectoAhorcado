@@ -25,14 +25,10 @@ Licencia: GNU-GPL
 
 package vista;
 
-import java.awt.GridLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import logica.*;
 
 public class VentanaInicio extends Ventana {
 	// Atributos:
@@ -49,6 +45,9 @@ public class VentanaInicio extends Ventana {
 		
 	// Constructor:
 	public VentanaInicio() {
+		// Listeners
+		btnJugar.addActionListener(this);
+
 		// Configuración de páneles propios.
 		northPanel.setBackground(new Color(226, 201, 99));
 		inputNombre.setLayout(new GridLayout(2, 1));
@@ -77,4 +76,25 @@ public class VentanaInicio extends Ventana {
 		// Mostrar Pantalla Inicial.
 		setVisible(true);
 	}
+
+	@Override
+    public void actionPerformed(ActionEvent evento){
+        if (evento.getSource() == btnJugar)
+            iniciarJuego();
+    }
+    
+    public void iniciarJuego(){
+        String nombreJugador = nombreField.getText();
+        
+        if(!nombreJugador.trim().isEmpty() || nombreJugador.trim().length() > 0){
+            Jugador jugador = new Jugador(nombreJugador);
+            Juego juego = new Juego(jugador);
+            dispose(); 
+            VentanaTematicas ventanaTematicas = new VentanaTematicas(juego);
+            
+        } else {
+            JOptionPane.showMessageDialog(null,"Por favor ingrese su nombre", "Advertencia", JOptionPane.ERROR_MESSAGE);
+            nombreField.requestFocusInWindow();
+        }
+    }
 }

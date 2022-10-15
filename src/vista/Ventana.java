@@ -22,10 +22,12 @@ Licencia: GNU-GPL
 package vista;
 
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 
-public class Ventana extends JFrame{
-    // Páneles distributivos:
+
+    public abstract class Ventana extends JFrame implements ActionListener{
+      // Páneles distributivos:
     protected JPanel centerPanel = new JPanel(); 
     protected JPanel northPanel = new JPanel(); 
     protected JPanel eastPanel = new JPanel(); 
