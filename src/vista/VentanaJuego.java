@@ -40,10 +40,11 @@ public class VentanaJuego extends Ventana {
     private JPanel rejillaAbecedario = new JPanel();
     private JPanel cajaButton = new JPanel();
     private JPanel cajaPalabraAdivinar = new JPanel();
-
 	private JLabel intentosTotales = new JLabel("Intentos Totales:");
 	private JLabel intentosRestantes = new JLabel("Intentos Restantes:");
 	private JLabel intentosEjecutados = new JLabel("Intentos Ejecutados:");
+    private JLabel labelSprites;
+    private ImageIcon ahorcadoSprites;
 
     // CAMBIAR LÍNEA DE CÓDIGO!!
     private JLabel palabraAdivinar = new JLabel("___ ___ ___ ___ ___");
@@ -57,16 +58,15 @@ public class VentanaJuego extends Ventana {
 		
         // Configuración de páneles propios.
         rejillaGeneral.setPreferredSize(new Dimension(776, 385));
-        // centerPanel.setBackground(Color.GRAY);
-        // rejillaGeneral.setBackground(Color.BLUE);
-        // cajaButton.setBackground(Color.yellow);
-        // interaccionJugador.setBackground(Color.RED);
-        // graficaAhorcado.setBackground(Color.orange);
+        centerPanel.setBackground(new Color(0, 0, 0, 0));
+        rejillaGeneral.setBackground(new Color(0, 0, 0, 0));
+        cajaButton.setBackground(new Color(0, 0, 0, 0));
+        interaccionJugador.setBackground(new Color(0, 0, 0, 0));
+        graficaAhorcado.setBackground(new Color(0, 0, 0, 0));
         rejillaEstadisticas.setLayout(new GridLayout(3, 1));
         rejillaGeneral.setLayout(new GridLayout(1, 2));
         rejillaAbecedario.setLayout(new GridLayout(3, 9, 2, 2));
         interaccionJugador.setLayout(new GridLayout(4, 1, 0, 20));
-        interaccionJugador.setPreferredSize(new Dimension(500, rejillaGeneral.getHeight()));
 
         // Creación del abecedario con ASCII.
         int ubicacionLetra = 0;
@@ -79,6 +79,14 @@ public class VentanaJuego extends Ventana {
                 abecedario[ubicacionLetra + 1] = new JButton("ñ");
                 rejillaAbecedario.add(abecedario[ubicacionLetra + 1]);
             }
+        }
+        // Carga de sprites.
+        try {
+            ahorcadoSprites = new ImageIcon(getClass().getResource("AhorcadoSprites/10.png"));
+            labelSprites = new JLabel(ahorcadoSprites);
+            graficaAhorcado.add(labelSprites);
+        } catch (Exception e) {
+            System.out.println("La imagen no pudo ser encontrada.");
         }
 
         // Añadidos de ventana inicial. 
