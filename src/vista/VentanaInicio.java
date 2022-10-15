@@ -58,6 +58,7 @@ public class VentanaInicio extends Ventana {
         panelCabecera.setLayout(new GridLayout(2, 1));
         panelCabecera.setBackground(new Color(0, 0, 0, 0));
         panelFormularioIncio.setLayout(new GridLayout(4, 1, 0, 20));
+        panelFormularioIncio.setPreferredSize(new Dimension(180, 250));
 
         // Añadidos de ventana inicial. 
         labelTitulo.setFont(new Font("Arial", Font.BOLD, 34));
@@ -70,7 +71,6 @@ public class VentanaInicio extends Ventana {
         northPanel.add(panelCabecera);
         panelInputNombre.add(labelNombre);
         panelInputNombre.add(fieldNombre);
-        panelFormularioIncio.setPreferredSize(new Dimension(180, 250));
         panelFormularioIncio.add(panelInputNombre);
         panelFormularioIncio.add(buttonJugar);
         panelFormularioIncio.add(buttonInstrucciones);
