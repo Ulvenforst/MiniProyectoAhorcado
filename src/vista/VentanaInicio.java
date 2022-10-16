@@ -106,16 +106,15 @@ public class VentanaInicio extends Ventana {
             fieldNombre.requestFocusInWindow();
             
         } else if (!nombreJugador.matches("[a-zA-Z ]+")){
-            JOptionPane.showMessageDialog(null,"Por favor solamente ingrese letras", "Advertencia", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Por favor ingrese solamente letras", "Advertencia", JOptionPane.ERROR_MESSAGE);
             fieldNombre.setText("");
             fieldNombre.requestFocusInWindow();
             
         } else {
+            Juego juego = new Juego();
             Jugador jugador = new Jugador(nombreJugador);
-            Juego juego = new Juego(jugador);
-            
-            dispose(); 
-            VentanaTematicas ventanaTematicas = new VentanaTematicas(juego);
+            dispose();
+            VentanaTematicas ventanaTematicas = new VentanaTematicas(juego, jugador);
         }
     }
 }

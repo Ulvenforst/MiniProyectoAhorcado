@@ -34,6 +34,7 @@ import javax.swing.*;
 public class VentanaTematicas extends Ventana {
     // Atributos:
     private Juego juego;
+    private Jugador jugador;
     private JLabel labelTitulo = new JLabel("El Ahorcado");
     private JLabel labelSubtitulo = new JLabel("Universidad del Valle");
     private JLabel labelEscogerTematica = new JLabel("Seleccione una temática: ");
@@ -48,8 +49,9 @@ public class VentanaTematicas extends Ventana {
     private JButton buttonVolver = new JButton("Volver");
     
     // Constructor:
-    public VentanaTematicas(Juego juego) {
+    public VentanaTematicas(Juego juego, Jugador jugador) {
         this.juego = juego;
+        this.jugador = jugador;
         
         // Listeners:
         buttonJugar.addActionListener(this);
@@ -99,26 +101,27 @@ public class VentanaTematicas extends Ventana {
     @Override
     public void actionPerformed(ActionEvent evento){
         if (evento.getSource() == buttonJugar){
-            try{
-                int numeroDePalabras = Integer.parseInt(fieldNumeroDePalabras.getText());
-                int categoriaSeleccionada = boxCategorias.getSelectedIndex();
-                iniciarJuego(categoriaSeleccionada, numeroDePalabras);
-                dispose();
-                VentanaJuego ventana = new VentanaJuego();
-                
-            } catch (NumberFormatException exception){
-                JOptionPane.showMessageDialog(null, "Por favor ingrese un número", "Error de ingreso de dato numérico", JOptionPane.ERROR_MESSAGE);
-                fieldNumeroDePalabras.setText("");
-                fieldNumeroDePalabras.requestFocus();
-            }
-            
+            iniciarJuego();
+
         } else if (evento.getSource() == buttonVolver){
             dispose();
             VentanaInicio ventana = new VentanaInicio(); 
         }
     }
     
-    public void iniciarJuego(int categoriaSeleccionada, int numeroDePalabras){
-        System.out.println("Hello Java");
+    public void iniciarJuego(){
+        try{
+            int indexCategoriaSeleccionada = boxCategorias.getSelectedIndex();
+            int numeroDePalabrasAAdivinar = Integer.parseInt(fieldNumeroDePalabras.getText());
+            juego.setIndexCategoriaSeleccionada(indexCategoriaSeleccionada);
+            juego.setNumeroDePalabrasAAdivinar(numeroDePalabrasAAdivinar);
+            dispose();
+            VentanaJuego ventanaJuego = new VentanaJuego(juego, jugador);
+
+        } catch (NumberFormatException exception){
+            JOptionPane.showMessageDialog(null, "Por favor ingrese un número", "Error de ingreso de dato numérico", JOptionPane.ERROR_MESSAGE);
+            fieldNumeroDePalabras.setText("");
+            fieldNumeroDePalabras.requestFocus();
+        }    
     }
 }
