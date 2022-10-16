@@ -25,14 +25,16 @@ package logica;
 public class Juego {
     //Atributos:
     private Jugador jugador;
+    private String[] categorias = {"Países", "Frutas", "Colores", "Animales", "Herramientas"};
     
     //Métodos:
     public Juego(Jugador jugador) {
         this.jugador = jugador;
     }
 
-    public boolean validacion(String letra) {
-        return true;
+    public String[] getCategorias() {
+        return categorias;
     }
-
+    
 }
+

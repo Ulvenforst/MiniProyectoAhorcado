@@ -27,27 +27,98 @@ package vista;
 
 import logica.*;
 
+import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
 public class VentanaTematicas extends Ventana {
-    //Atributos:
+    // Atributos:
     private Juego juego;
-    private JButton buttonJugar;
+    private JLabel labelTitulo = new JLabel("El Ahorcado");
+    private JLabel labelSubtitulo = new JLabel("Universidad del Valle");
+    private JLabel labelEscogerTematica = new JLabel("Seleccione una temática: ");
+    private JLabel labelNumeroDePalabras = new JLabel("Número de palabras: ");
+    private JComboBox boxCategorias;
+    private JTextField fieldNumeroDePalabras = new JTextField();
+    private JPanel panelCabecera = new JPanel();
+    private JPanel panelPrincipal = new JPanel();
+    private JPanel panelEscogerTematica = new JPanel();
+    private JPanel panelEsocgerNumeroDePalabras = new JPanel();
+    private JButton buttonJugar = new JButton("Jugar");
+    private JButton buttonVolver = new JButton("Volver");
     
-    //Métodos:
+    // Constructor:
     public VentanaTematicas(Juego juego) {
         this.juego = juego;
+        
+        // Listeners:
+        buttonJugar.addActionListener(this);
+        buttonVolver.addActionListener(this);
+		
+        // Configuración de páneles propios.
+        northPanel.setPreferredSize(new Dimension(100, 90));
+        northPanel.setBackground(new Color(79, 198, 198));
+        panelCabecera.setLayout(new GridLayout(2, 1));
+        panelCabecera.setBackground(new Color(0, 0, 0, 0));
+        panelPrincipal.setLayout(new GridLayout(4, 1, 0, 20));
+        panelPrincipal.setPreferredSize(new Dimension(200, 250));
+        panelEscogerTematica.setLayout(new GridLayout(2, 1));
+        panelEsocgerNumeroDePalabras.setLayout(new GridLayout(2, 1));
+
+        // Añadidos de ventana inicial. 
+        labelTitulo.setFont(new Font("Arial", Font.BOLD, 34));
+        labelTitulo.setHorizontalAlignment(JLabel.CENTER);
+        labelSubtitulo.setFont(new Font("Arial", Font.BOLD, 16));
+        labelSubtitulo.setHorizontalAlignment(JLabel.CENTER);
+        panelCabecera.add(labelTitulo);
+        panelCabecera.add(labelSubtitulo);
+        northPanel.add(panelCabecera);
+        
+        labelEscogerTematica.setFont(new Font("Arial", Font.PLAIN, 16));
+        labelEscogerTematica.setHorizontalAlignment(JLabel.CENTER);
+        boxCategorias = new JComboBox<String>(juego.getCategorias());
+        boxCategorias.setSelectedIndex(2);
+        panelEscogerTematica.add(labelEscogerTematica);
+        panelEscogerTematica.add(boxCategorias);
+        labelNumeroDePalabras.setFont(new Font("Arial", Font.PLAIN, 16));
+        labelNumeroDePalabras.setHorizontalAlignment(JLabel.CENTER);
+        fieldNumeroDePalabras.setHorizontalAlignment(JTextField.CENTER);
+        fieldNumeroDePalabras.setFont(new Font("Arial", Font.PLAIN, 14));
+        panelEsocgerNumeroDePalabras.add(labelNumeroDePalabras);
+        panelEsocgerNumeroDePalabras.add(fieldNumeroDePalabras);
+        panelPrincipal.add(panelEscogerTematica);
+        panelPrincipal.add(panelEsocgerNumeroDePalabras);
+        panelPrincipal.add(buttonJugar);
+        panelPrincipal.add(buttonVolver);
+        centerPanel.add(panelPrincipal);
+        
+        // Mostrar Pantalla Inicial.
         setVisible(true);
     }   
-    
+
     @Override
     public void actionPerformed(ActionEvent evento){
-        if (evento.getSource() == buttonJugar)
-            iniciarJuego();
+        if (evento.getSource() == buttonJugar){
+            try{
+                int numeroDePalabras = Integer.parseInt(fieldNumeroDePalabras.getText());
+                int categoriaSeleccionada = boxCategorias.getSelectedIndex();
+                iniciarJuego(categoriaSeleccionada, numeroDePalabras);
+                dispose();
+                VentanaJuego ventana = new VentanaJuego();
+                
+            } catch (NumberFormatException exception){
+                JOptionPane.showMessageDialog(null, "Por favor ingrese un número", "Error de ingreso de dato numérico", JOptionPane.ERROR_MESSAGE);
+                fieldNumeroDePalabras.setText("");
+                fieldNumeroDePalabras.requestFocus();
+            }
+            
+        } else if (evento.getSource() == buttonVolver){
+            dispose();
+            VentanaInicio ventana = new VentanaInicio(); 
+        }
     }
     
-    public void iniciarJuego(){
+    public void iniciarJuego(int categoriaSeleccionada, int numeroDePalabras){
         System.out.println("Hello Java");
     }
 }
