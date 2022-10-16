@@ -53,7 +53,7 @@ public class VentanaInicio extends Ventana {
 
         // Configuración de páneles propios.
         northPanel.setPreferredSize(new Dimension(100, 90));
-        northPanel.setBackground(new Color(226, 201, 99));
+        northPanel.setBackground(new Color(79, 198, 198));
         panelInputNombre.setLayout(new GridLayout(2, 1));
         panelCabecera.setLayout(new GridLayout(2, 1));
         panelCabecera.setBackground(new Color(0, 0, 0, 0));
@@ -91,11 +91,11 @@ public class VentanaInicio extends Ventana {
 
         } else if (evento.getSource() == buttonInstrucciones){
             dispose();
-            // ventanaInstrucciones ventanaInstrucciones = new VentanaInstrucciones();
+             VentanaInstrucciones ventanaInstrucciones = new VentanaInstrucciones();
             
         } else if (evento.getSource() == buttonParaQueSirve){
             dispose();
-            // ventanaInformacion ventanaInformacion = new VentanaInformacion();
+            VentanaInformacion ventanaInformacion = new VentanaInformacion();
         }
     }
     

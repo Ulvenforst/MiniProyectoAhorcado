@@ -29,7 +29,6 @@ import logica.*;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.time.temporal.Temporal;
 import javax.swing.*;
 
 public class VentanaTematicas extends Ventana {
@@ -42,12 +41,11 @@ public class VentanaTematicas extends Ventana {
     private JComboBox boxCategorias;
     private JTextField fieldNumeroDePalabras = new JTextField();
     private JPanel panelCabecera = new JPanel();
-    private JPanel panelInputTematica = new JPanel();
     private JPanel panelPrincipal = new JPanel();
     private JPanel panelEscogerTematica = new JPanel();
     private JPanel panelEsocgerNumeroDePalabras = new JPanel();
     private JButton buttonJugar = new JButton("Jugar");
-    private JButton buttonSalir = new JButton("Salir");
+    private JButton buttonVolver = new JButton("Volver");
     
     // Constructor:
     public VentanaTematicas(Juego juego) {
@@ -55,11 +53,11 @@ public class VentanaTematicas extends Ventana {
         
         // Listeners:
         buttonJugar.addActionListener(this);
-        buttonSalir.addActionListener(this);
+        buttonVolver.addActionListener(this);
 		
         // Configuración de páneles propios.
         northPanel.setPreferredSize(new Dimension(100, 90));
-        northPanel.setBackground(new Color(226, 201, 99));
+        northPanel.setBackground(new Color(79, 198, 198));
         panelCabecera.setLayout(new GridLayout(2, 1));
         panelCabecera.setBackground(new Color(0, 0, 0, 0));
         panelPrincipal.setLayout(new GridLayout(4, 1, 0, 20));
@@ -91,7 +89,7 @@ public class VentanaTematicas extends Ventana {
         panelPrincipal.add(panelEscogerTematica);
         panelPrincipal.add(panelEsocgerNumeroDePalabras);
         panelPrincipal.add(buttonJugar);
-        panelPrincipal.add(buttonSalir);
+        panelPrincipal.add(buttonVolver);
         centerPanel.add(panelPrincipal);
         
         // Mostrar Pantalla Inicial.
@@ -112,7 +110,7 @@ public class VentanaTematicas extends Ventana {
                 fieldNumeroDePalabras.requestFocus();
             }
             
-        } else if (evento.getSource() == buttonSalir){
+        } else if (evento.getSource() == buttonVolver){
             dispose();
             VentanaInicio ventana = new VentanaInicio(); 
         }
