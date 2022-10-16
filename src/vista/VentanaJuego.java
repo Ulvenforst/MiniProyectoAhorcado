@@ -27,6 +27,7 @@ package vista;
 
 import logica.*;
 import java.awt.*;
+import java.util.Arrays;
 import java.awt.event.*;
 import javax.swing.*;
 
@@ -46,6 +47,12 @@ public class VentanaJuego extends Ventana {
     private JLabel lineasPalabra;
     private JButton abecedario[] = new JButton[27];
     private JButton buttonSalir = new JButton("Salir");
+
+    // Palabras a adivinar (CAMBIAR PARA USO CON Juego.java)
+    private String palabraAdivinar = "Adivinador"; // 10 letras.
+    String listaLetrasValidas[] = palabraAdivinar.split("");
+    int spriteContador = 2;
+
     
 	// Constructor:
 	public VentanaJuego() {
@@ -58,7 +65,6 @@ public class VentanaJuego extends Ventana {
         rejillaGeneral.setBackground(new Color(0, 0, 0, 0));
         cajaButton.setBackground(new Color(0, 0, 0, 0));
         interaccionJugador.setBackground(new Color(0, 0, 0, 0));
-        graficaAhorcado.setBackground(new Color(0, 0, 0, 0));
         rejillaEstadisticas.setLayout(new GridLayout(3, 1));
         rejillaGeneral.setLayout(new GridLayout(1, 2));
         rejillaAbecedario.setLayout(new GridLayout(3, 9, 3, 3));
@@ -72,25 +78,19 @@ public class VentanaJuego extends Ventana {
             rejillaAbecedario.add(abecedario[ubicacionLetra]);
             abecedario[ubicacionLetra].addActionListener(this);
             abecedario[ubicacionLetra].setMargin(new Insets(0, 0, 0, 0));
-            if(asciiLetra == 110) {
+            if(asciiLetra == 110) { // Manipulación de letra «ñ»
                 abecedario[ubicacionLetra + 1] = new JButton("ñ");
                 rejillaAbecedario.add(abecedario[ubicacionLetra + 1]);
                 abecedario[ubicacionLetra + 1].addActionListener(this);
                 abecedario[ubicacionLetra + 1].setMargin(new Insets(0, 0, 0, 0));
-                // Modificar aspecto de la ñ.
-                // abecedario[ubicacionLetra + 1].setBackground(new Color(194, 232, 241));
-                // abecedario[ubicacionLetra + 1].setBorder(null);
                 ubicacionLetra++;
             }
-            // Modificar aspecto de letras inglesas.
-            // abecedario[ubicacionLetra].setBackground(new Color(194, 232, 241));
-            // abecedario[ubicacionLetra].setBorder(null);
             ubicacionLetra++;
         }
 
         // Carga de sprites.
         try {
-            ahorcadoSprites = new ImageIcon(getClass().getResource("AhorcadoSprites/10.png"));
+            ahorcadoSprites = new ImageIcon(getClass().getResource("AhorcadoSprites/1.png"));
             labelSprites = new JLabel(ahorcadoSprites);
             graficaAhorcado.add(labelSprites);
         } catch (Exception e) {
@@ -98,7 +98,6 @@ public class VentanaJuego extends Ventana {
         }
 
         // Visualización de líneas de cada letra.
-        String palabraAdivinar = "mmmmmmm";
         StringBuilder letrasPalabraAdivinar = new StringBuilder();
         for(int contadorLetra = 0; contadorLetra < palabraAdivinar.length(); contadorLetra++) {
             if(contadorLetra == palabraAdivinar.length() - 1) {
@@ -122,8 +121,8 @@ public class VentanaJuego extends Ventana {
         interaccionJugador.add(cajaButton);
         rejillaGeneral.add(interaccionJugador);
         rejillaGeneral.add(graficaAhorcado);
-        centerPanel.add(rejillaGeneral);
-		
+        centerPanel.add(rejillaGeneral);        
+
 		// Mostrar Pantalla Inicial.
         setVisible(true);
 	}
@@ -136,8 +135,17 @@ public class VentanaJuego extends Ventana {
             VentanaInicio ventanaInicio = new VentanaInicio();
         } else if (evento.getSource() != null) {
             for (int busquedaBoton = 0; busquedaBoton < 27; busquedaBoton++) {
+                // Se obtiene el texto de la letra presionada.
                 if (evento.getSource() == abecedario[busquedaBoton]){
                     System.out.println(abecedario[busquedaBoton].getText());
+                    // Validación de letra en palabra.
+                    if(Arrays.asList(listaLetrasValidas).contains(abecedario[busquedaBoton].getText())) {
+                        abecedario[busquedaBoton].setBackground(Color.GREEN);              
+                    } else if (!Arrays.asList(listaLetrasValidas).contains(abecedario[busquedaBoton].getText()) && spriteContador <= 10) {
+                        abecedario[busquedaBoton].setBackground(Color.RED);
+                        ahorcadoSprites = new ImageIcon(getClass().getResource("AhorcadoSprites/"+ spriteContador++ +".png"));
+                        labelSprites.setIcon(ahorcadoSprites);
+                    }
                 }
             }
         }

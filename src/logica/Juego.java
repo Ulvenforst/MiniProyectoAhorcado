@@ -30,4 +30,8 @@ public class Juego {
     public Juego(Jugador jugador) {
         this.jugador = jugador;
     }
+
+    public boolean validacion(String letra) {
+        return true;
+    }
 }
