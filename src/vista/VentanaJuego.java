@@ -45,7 +45,6 @@ public class VentanaJuego extends Ventana {
 	private JLabel intentosEjecutados = new JLabel("Intentos Ejecutados:");
     private JLabel labelSprites;
     private ImageIcon ahorcadoSprites;
-
     // CAMBIAR LÍNEA DE CÓDIGO!!
     private JLabel palabraAdivinar = new JLabel("___ ___ ___ ___ ___");
     private JButton abecedario[] = new JButton[27];
@@ -65,7 +64,7 @@ public class VentanaJuego extends Ventana {
         graficaAhorcado.setBackground(new Color(0, 0, 0, 0));
         rejillaEstadisticas.setLayout(new GridLayout(3, 1));
         rejillaGeneral.setLayout(new GridLayout(1, 2));
-        rejillaAbecedario.setLayout(new GridLayout(3, 9, 2, 2));
+        rejillaAbecedario.setLayout(new GridLayout(3, 9, 4, 4));
         interaccionJugador.setLayout(new GridLayout(4, 1, 0, 20));
 
         // Creación del abecedario con ASCII.
@@ -74,11 +73,18 @@ public class VentanaJuego extends Ventana {
             char letra = (char) asciiLetra;
             abecedario[ubicacionLetra] = new JButton(String.valueOf(letra));
             rejillaAbecedario.add(abecedario[ubicacionLetra]);
-            
             if(asciiLetra == 110) {
                 abecedario[ubicacionLetra + 1] = new JButton("ñ");
                 rejillaAbecedario.add(abecedario[ubicacionLetra + 1]);
+                abecedario[ubicacionLetra + 1].setMargin(new Insets(0, 0, 0, 0));
+                // Modificar aspecto de la ñ.
+                // abecedario[ubicacionLetra + 1].setBackground(new Color(194, 232, 241));
+                // abecedario[ubicacionLetra + 1].setBorder(null);
             }
+            abecedario[ubicacionLetra].setMargin(new Insets(0, 0, 0, 0));
+            // Modificar aspecto de letras inglesas.
+            // abecedario[ubicacionLetra].setBackground(new Color(194, 232, 241));
+            // abecedario[ubicacionLetra].setBorder(null);
         }
         // Carga de sprites.
         try {
@@ -90,6 +96,7 @@ public class VentanaJuego extends Ventana {
         }
 
         // Añadidos de ventana inicial. 
+        palabraAdivinar.setFont(new Font("Arial", Font.BOLD, 16));
         palabraAdivinar.setHorizontalAlignment(JLabel.CENTER);
         cajaPalabraAdivinar.add(palabraAdivinar);
         cajaButton.add(buttonSalir);
