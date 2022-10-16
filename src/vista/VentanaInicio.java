@@ -33,11 +33,11 @@ import javax.swing.*;
 
 public class VentanaInicio extends Ventana {
     // Atributos:
+    private JPanel panelCabecera = new JPanel();
     private JLabel labelTitulo = new JLabel("El Ahorcado");
     private JLabel labelSubtitulo = new JLabel("Universidad del Valle");
     private JLabel labelNombre = new JLabel("Ingrese su nombre:");
     private JPanel panelInputNombre = new JPanel();
-    private JPanel panelCabecera = new JPanel();
     private JPanel panelFormularioIncio = new JPanel();
     private JTextField fieldNombre = new JTextField();
     private JButton buttonJugar = new JButton("Jugar");
@@ -54,9 +54,9 @@ public class VentanaInicio extends Ventana {
         // Configuración de páneles propios.
         northPanel.setPreferredSize(new Dimension(100, 90));
         northPanel.setBackground(new Color(79, 198, 198));
-        panelInputNombre.setLayout(new GridLayout(2, 1));
         panelCabecera.setLayout(new GridLayout(2, 1));
         panelCabecera.setBackground(new Color(0, 0, 0, 0));
+        panelInputNombre.setLayout(new GridLayout(2, 1));
         panelFormularioIncio.setLayout(new GridLayout(4, 1, 0, 20));
         panelFormularioIncio.setPreferredSize(new Dimension(180, 250));
 

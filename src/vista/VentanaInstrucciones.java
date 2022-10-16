@@ -54,7 +54,6 @@ public class VentanaInstrucciones extends Ventana {
         panelPrincipal.setPreferredSize(new Dimension(370, 270));
         panelFinal.setLayout(new GridLayout(1, 3));
 
-
         // Añadidos de ventana inicial. 
         labelTitulo.setFont(new Font("Arial", Font.BOLD, 34));
         labelTitulo.setHorizontalAlignment(JLabel.CENTER);

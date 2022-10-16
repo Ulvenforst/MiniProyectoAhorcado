@@ -54,7 +54,6 @@ public class VentanaJuego extends Ventana {
     private String lineas = new String();
     private String lineasLetrasValidas[] = new String[palabraAdivinar.length()];
     private int spriteContador = 2;
-
     
 	// Constructor:
 	public VentanaJuego() {

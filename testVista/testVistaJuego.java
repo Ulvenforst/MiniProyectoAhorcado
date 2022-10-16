@@ -1,8 +1,8 @@
 
-// package testVista;
+// package TestVista;
 // import vista.VentanaJuego;
 
-// public class testVistaJuego {
+// public class TestVistaJuego {
 //     public static void main(String[] args) {
 //         VentanaJuego ventanaInicio = new VentanaJuego();
 //     }
