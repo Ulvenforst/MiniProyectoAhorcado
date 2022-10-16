@@ -27,7 +27,7 @@ package vista;
 
 import logica.*;
 import java.awt.*;
-import java.util.Arrays;
+import java.util.*;
 import java.awt.event.*;
 import javax.swing.*;
 
@@ -49,8 +49,8 @@ public class VentanaJuego extends Ventana {
     private JButton buttonSalir = new JButton("Salir");
 
     // Palabras a adivinar (CAMBIAR PARA USO CON Juego.java)
-    private String palabraAdivinar = "Adivinador"; // 10 letras.
-    String listaLetrasValidas[] = palabraAdivinar.split("");
+    private String palabraAdivinar = "Manzana"; // 7 letras.
+    String listaLetrasValidas[] = palabraAdivinar.toLowerCase().split("");
     int spriteContador = 2;
 
     
@@ -145,6 +145,8 @@ public class VentanaJuego extends Ventana {
                         abecedario[busquedaBoton].setBackground(Color.RED);
                         ahorcadoSprites = new ImageIcon(getClass().getResource("AhorcadoSprites/"+ spriteContador++ +".png"));
                         labelSprites.setIcon(ahorcadoSprites);
+                    } else {
+                        abecedario[busquedaBoton].setBackground(Color.RED);
                     }
                 }
             }

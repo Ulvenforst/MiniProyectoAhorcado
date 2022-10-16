@@ -102,6 +102,7 @@ public class VentanaInicio extends Ventana {
         if(!nombreJugador.trim().isEmpty() || nombreJugador.trim().length() > 0){
             Jugador jugador = new Jugador(nombreJugador);
             Juego juego = new Juego(jugador);
+            
             dispose(); 
             VentanaTematicas ventanaTematicas = new VentanaTematicas(juego);
 
