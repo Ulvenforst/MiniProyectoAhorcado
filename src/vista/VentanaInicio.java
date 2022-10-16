@@ -86,7 +86,6 @@ public class VentanaInicio extends Ventana {
     public void actionPerformed(ActionEvent evento){
         if (evento.getSource() == buttonJugar){
             iniciarJuego();
-
         } else if (evento.getSource() == buttonInstrucciones){
             dispose();
 		// ventanaInstrucciones ventanaInstrucciones = new VentanaInstrucciones();
