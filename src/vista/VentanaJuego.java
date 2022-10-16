@@ -49,9 +49,11 @@ public class VentanaJuego extends Ventana {
     private JButton buttonSalir = new JButton("Salir");
 
     // Palabras a adivinar (CAMBIAR PARA USO CON Juego.java)
-    private String palabraAdivinar = "Manzana"; // 7 letras.
-    String listaLetrasValidas[] = palabraAdivinar.toLowerCase().split("");
-    int spriteContador = 2;
+    private String palabraAdivinar = "Zanahoria"; // 7 letras.
+    private String listaLetrasValidas[] = palabraAdivinar.toLowerCase().split("");
+    private String lineas = new String();
+    private String lineasLetrasValidas[] = new String[palabraAdivinar.length()];
+    private int spriteContador = 2;
 
     
 	// Constructor:
@@ -61,10 +63,6 @@ public class VentanaJuego extends Ventana {
 		
         // Configuración de páneles propios.
         rejillaGeneral.setPreferredSize(new Dimension(776, 385));
-        centerPanel.setBackground(new Color(0, 0, 0, 0));
-        rejillaGeneral.setBackground(new Color(0, 0, 0, 0));
-        cajaButton.setBackground(new Color(0, 0, 0, 0));
-        interaccionJugador.setBackground(new Color(0, 0, 0, 0));
         rejillaEstadisticas.setLayout(new GridLayout(3, 1));
         rejillaGeneral.setLayout(new GridLayout(1, 2));
         rejillaAbecedario.setLayout(new GridLayout(3, 9, 3, 3));
@@ -98,15 +96,15 @@ public class VentanaJuego extends Ventana {
         }
 
         // Visualización de líneas de cada letra.
-        StringBuilder letrasPalabraAdivinar = new StringBuilder();
         for(int contadorLetra = 0; contadorLetra < palabraAdivinar.length(); contadorLetra++) {
             if(contadorLetra == palabraAdivinar.length() - 1) {
-                letrasPalabraAdivinar.append("___");
+                lineasLetrasValidas[contadorLetra] = "___";
             } else {
-                letrasPalabraAdivinar.append("___ ");
+                lineasLetrasValidas[contadorLetra] = "___ ";
             }
         }
-        lineasPalabra = new JLabel(String.valueOf(letrasPalabraAdivinar));
+        lineas = String.join("", lineasLetrasValidas);
+        lineasPalabra = new JLabel(lineas);
 
         // Añadidos de ventana inicial. 
         lineasPalabra.setFont(new Font("Arial", Font.BOLD, 16));
@@ -140,7 +138,21 @@ public class VentanaJuego extends Ventana {
                     System.out.println(abecedario[busquedaBoton].getText());
                     // Validación de letra en palabra.
                     if(Arrays.asList(listaLetrasValidas).contains(abecedario[busquedaBoton].getText())) {
-                        abecedario[busquedaBoton].setBackground(Color.GREEN);              
+                        abecedario[busquedaBoton].setBackground(Color.GREEN);  
+
+                        // Aquí se cambia la línea por la letra
+                        for(int buscadorLetraElegida = 0; buscadorLetraElegida < palabraAdivinar.length(); buscadorLetraElegida++) {
+                            if(abecedario[busquedaBoton].getText().charAt(0) == listaLetrasValidas[buscadorLetraElegida].charAt(0)) {
+                                if(buscadorLetraElegida == palabraAdivinar.length() - 1) {
+                                    lineasLetrasValidas[buscadorLetraElegida] = "  "+ abecedario[busquedaBoton].getText() + "  ";
+                                } else {
+                                    lineasLetrasValidas[buscadorLetraElegida] = "  "+ abecedario[busquedaBoton].getText() + "   ";
+                                }
+                            }
+                        }
+                        lineas = String.join("", lineasLetrasValidas);
+                        lineasPalabra.setText(lineas);
+
                     } else if (!Arrays.asList(listaLetrasValidas).contains(abecedario[busquedaBoton].getText()) && spriteContador <= 10) {
                         abecedario[busquedaBoton].setBackground(Color.RED);
                         ahorcadoSprites = new ImageIcon(getClass().getResource("AhorcadoSprites/"+ spriteContador++ +".png"));
@@ -148,6 +160,7 @@ public class VentanaJuego extends Ventana {
                     } else {
                         abecedario[busquedaBoton].setBackground(Color.RED);
                     }
+                    abecedario[busquedaBoton].setEnabled(false);
                 }
             }
         }
