@@ -43,7 +43,7 @@ public class VentanaTematicas extends Ventana {
     private JPanel panelCabecera = new JPanel();
     private JPanel panelPrincipal = new JPanel();
     private JPanel panelEscogerTematica = new JPanel();
-    private JPanel panelEsocgerNumeroDePalabras = new JPanel();
+    private JPanel panelEscogerNumeroDePalabras = new JPanel();
     private JButton buttonJugar = new JButton("Jugar");
     private JButton buttonVolver = new JButton("Volver");
     
@@ -63,7 +63,7 @@ public class VentanaTematicas extends Ventana {
         panelPrincipal.setLayout(new GridLayout(4, 1, 0, 20));
         panelPrincipal.setPreferredSize(new Dimension(200, 250));
         panelEscogerTematica.setLayout(new GridLayout(2, 1));
-        panelEsocgerNumeroDePalabras.setLayout(new GridLayout(2, 1));
+        panelEscogerNumeroDePalabras.setLayout(new GridLayout(2, 1));
 
         // Añadidos de ventana inicial. 
         labelTitulo.setFont(new Font("Arial", Font.BOLD, 34));
@@ -84,10 +84,10 @@ public class VentanaTematicas extends Ventana {
         labelNumeroDePalabras.setHorizontalAlignment(JLabel.CENTER);
         fieldNumeroDePalabras.setHorizontalAlignment(JTextField.CENTER);
         fieldNumeroDePalabras.setFont(new Font("Arial", Font.PLAIN, 14));
-        panelEsocgerNumeroDePalabras.add(labelNumeroDePalabras);
-        panelEsocgerNumeroDePalabras.add(fieldNumeroDePalabras);
+        panelEscogerNumeroDePalabras.add(labelNumeroDePalabras);
+        panelEscogerNumeroDePalabras.add(fieldNumeroDePalabras);
         panelPrincipal.add(panelEscogerTematica);
-        panelPrincipal.add(panelEsocgerNumeroDePalabras);
+        panelPrincipal.add(panelEscogerNumeroDePalabras);
         panelPrincipal.add(buttonJugar);
         panelPrincipal.add(buttonVolver);
         centerPanel.add(panelPrincipal);

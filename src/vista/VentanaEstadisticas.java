@@ -32,6 +32,7 @@ import javax.swing.*;
 
 public class VentanaEstadisticas extends Ventana {
     // Atributos:
+    private Juego juego;
     private JPanel panelCabecera = new JPanel();
     private JPanel rejillaGeneral = new JPanel();
     private JPanel rejillaEstadisticas = new JPanel();
@@ -49,7 +50,9 @@ public class VentanaEstadisticas extends Ventana {
     private JLabel labelModaPalabra = new JLabel("Palabra más acertada:");
     
     // Constructor:
-    public VentanaEstadisticas(){
+    public VentanaEstadisticas(Juego juego){
+        this.juego = juego;
+        
         // Listeners:
         buttonVolver.addActionListener(this);
 		

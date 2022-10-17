@@ -40,9 +40,9 @@ public class VentanaJuego extends Ventana {
     private JPanel panelRejillaEstadisticas = new JPanel();
     private JPanel panelRejillaAbecedario = new JPanel();
     private JPanel panelBoton = new JPanel();
-    private JLabel labelItentosTotales = new JLabel("Intentos Totales:");
-    private JLabel labelIntentosRestantes = new JLabel("Intentos Restantes:");
-    private JLabel labelIntentosEjecutados = new JLabel("Intentos Ejecutados:");
+    private JLabel labelPalabrasTotales = new JLabel();
+    private JLabel labelPalabrasRestantes = new JLabel();
+    private JLabel labelPalabrasEjecutadas = new JLabel();
     private JLabel labelSprites = new JLabel();
     private ImageIcon ahorcadoSprites;
     private JLabel labelLineasPalabra = new JLabel();
@@ -99,12 +99,15 @@ public class VentanaJuego extends Ventana {
         cargarSprites();
 
         // Añadidos de ventana inicial. 
+        labelPalabrasTotales.setText("Número de palabras: " + juego.getNumeroDePalabrasAAdivinar());
+        labelPalabrasEjecutadas.setText("Palabras ejecutadas: " + juego.getPalabrasJugadas());
+        labelPalabrasRestantes.setText("Palabras restantes: " + (juego.getNumeroDePalabrasAAdivinar() - juego.getPalabrasJugadas()));
         labelLineasPalabra.setFont(new Font("Arial", Font.BOLD, 16));
         labelLineasPalabra.setHorizontalAlignment(JLabel.CENTER);
         panelBoton.add(buttonSalir);
-        panelRejillaEstadisticas.add(labelItentosTotales);
-        panelRejillaEstadisticas.add(labelIntentosRestantes);
-        panelRejillaEstadisticas.add(labelIntentosEjecutados);
+        panelRejillaEstadisticas.add(labelPalabrasTotales);
+        panelRejillaEstadisticas.add(labelPalabrasEjecutadas);
+        panelRejillaEstadisticas.add(labelPalabrasRestantes);
         panelInteraccionJugador.add(panelRejillaEstadisticas);
         panelInteraccionJugador.add(labelLineasPalabra);
         panelInteraccionJugador.add(panelRejillaAbecedario);
@@ -238,18 +241,12 @@ public class VentanaJuego extends Ventana {
             juego.nuevaRonda();
             VentanaTematicas nuevaVentanaTematicas = new VentanaTematicas(juego);
         } else if (continuar == JOptionPane.NO_OPTION){
-            mostrarEstadisticasFinales();
+            VentanaEstadisticas nuevaVentanaEstadisticas = new VentanaEstadisticas(juego);
             dispose();
         } else {
-            mostrarEstadisticasFinales();
+            VentanaEstadisticas nuevaVentanaEstadisticas = new VentanaEstadisticas(juego);
             dispose();
         } 
-    }
-    
-    public void mostrarEstadisticasFinales(){
-        int rondasEjecutadas = juego.getRondasEjecutadas();
-        
-        JOptionPane.showMessageDialog(null, "Rondas jugadas: " + rondasEjecutadas + "","Estadísticas Finales", JOptionPane.PLAIN_MESSAGE);
     }
     
     public void continuarJugando(){
@@ -259,6 +256,7 @@ public class VentanaJuego extends Ventana {
             VentanaJuego nuevaVentanaJuego = new VentanaJuego(juego);
         } else if (continuar == JOptionPane.NO_OPTION){
             dispose();
+            VentanaEstadisticas nuevaVentanaEstadisticas = new VentanaEstadisticas(juego);
         } else {
             dispose();
         }

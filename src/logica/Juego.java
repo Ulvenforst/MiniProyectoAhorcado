@@ -139,6 +139,4 @@ public class Juego {
         palabrasJugadas = 0;
         
     }
-    
  }
-
