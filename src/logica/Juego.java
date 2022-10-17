@@ -21,11 +21,11 @@
 */
 
 package logica;
-
 import java.util.*;
 
 public class Juego {
     //Atributos:
+    private static double porcentajesRondas[] = new double[0];
     private String nombreDelJugador;
     private String[] categorias = {"Países", "Frutas", "Colores", "Animales", "Herramientas"};
     private String[][] palabrasPorCategoria = new String[categorias.length][];
@@ -34,12 +34,13 @@ public class Juego {
     private int numeroDePalabrasAAdividnar;
     private int palabrasJugadas = 0;
     private int palabrasNoAdivinadas = 0;
-    private  int palabrasAdivinadas = 0;
+    private int palabrasAdivinadas = 0;
     private int rondasEjecutadas = 0;
     
     //Métodos:
     public Juego(String nombreDelJugador) {
         this.nombreDelJugador = nombreDelJugador;
+
         palabrasPorCategoria[0] = new String[]{"Alemania", "Australia", "Argentina", "Bolivia", "Bulgaria", "Colombia", "Croacia", "Camboya", "Dinamarca", "España", "Finlandia", "Honduras", "Jamaica", "Jordania", "Kenia", "Kirguistan", "Kuwait", "Namibia", "Nigeria", "Noruega", "Peru", "Polonia", "Portugal", "Panama", "Suecia", "Suiza", "Somalia", "Siria", "Tanzania", "Ucrania", "Uganda", "Uruguay", "Venezuela", "Vietnam"};
         palabrasPorCategoria[1] = new String[]{"Arandano", "Banano", "Cereza", "Ciruela", "Durazno", "Frambuesa", "Fresa", "Granadilla", "Granada", "Kiwi", "Limon", "Mandarina", "Mango", "Manzana", "Maracuya", "Melon", "Mora", "Naranja", "Papaya"};
         palabrasPorCategoria[2] = new String[]{"Amarillo", "Ambar", "Azabache", "Azul", "Beige", "Blanco", "Bronce", "Cafe", "Carmesi", "Castaño", "Celeste", "Dorado", "Fucsia", "Gris", "Indigo", "Magenta", "Marron", "Naranja", "Negro", "Ocre", "Plata", "Platino", "Purpura", "Turquesa", "Vinotinto", "Violeta"};
@@ -55,6 +56,30 @@ public class Juego {
         this.numeroDePalabrasAAdividnar = numeroDePalabrasAAdivinar;
     }
     
+    public int getMejorRonda(){
+        int ronda = 1;
+
+        for(int buscadorPosicion = 0; buscadorPosicion < porcentajesRondas.length; buscadorPosicion++) {
+            if(porcentajesRondas[buscadorPosicion] == getMayorPorcentajeRondas()) {
+                ronda = buscadorPosicion + 1;
+                break;
+            }
+        }
+        return ronda;
+    }
+
+    public int getPeorRonda(){
+        int ronda = 1;
+
+        for(int buscadorPosicion = 0; buscadorPosicion < porcentajesRondas.length; buscadorPosicion++) {
+            if(porcentajesRondas[buscadorPosicion] == getPeorPorcentajeRondas()) {
+                ronda = buscadorPosicion + 1;
+                break;
+            }
+        }
+        return ronda;
+    }
+
     public String getNombreDelJugador(){
         return nombreDelJugador;
     }
@@ -81,6 +106,26 @@ public class Juego {
     
     public int getRondasEjecutadas(){
         return rondasEjecutadas;
+    }
+
+    public double getMayorPorcentajeRondas(){
+        double mayorPorcentaje = 0;
+        double porcentajesMayor[] = new double[porcentajesRondas.length];
+        porcentajesMayor = Arrays.copyOf(porcentajesRondas, porcentajesRondas.length);
+        Arrays.sort(porcentajesMayor);
+        mayorPorcentaje = porcentajesMayor[porcentajesMayor.length - 1];
+
+        return mayorPorcentaje;
+    }
+
+    public double getPeorPorcentajeRondas(){
+        double peorPorcentaje = 0;
+        double porcentajesMayor[] = new double[porcentajesRondas.length];
+        porcentajesMayor = Arrays.copyOf(porcentajesRondas, porcentajesRondas.length);
+        Arrays.sort(porcentajesMayor);
+        peorPorcentaje = porcentajesMayor[0];
+
+        return peorPorcentaje;
     }
     
     public int getPalabrasNoAdivinadas(){
@@ -128,6 +173,16 @@ public class Juego {
     }
     
     public void rondaEjecutada(){
+        // Se simula un append al arreglo de juegos.
+        porcentajesRondas = Arrays.copyOf(porcentajesRondas, porcentajesRondas.length + 1);
+        
+        double porcentajeRonda;
+        porcentajeRonda = (double) getPalabrasAdivinadas()/getNumeroDePalabrasAAdivinar() * 100;
+        porcentajeRonda = Math.round(porcentajeRonda*100.0)/100.0;
+        porcentajesRondas[porcentajesRondas.length - 1] = porcentajeRonda;
+        
+        getMejorRonda();
+        
         rondasEjecutadas++;
     }
     
@@ -137,6 +192,5 @@ public class Juego {
         palabrasNoAdivinadas = 0;
         palabrasAdivinadas = 0;
         palabrasJugadas = 0;
-        
     }
  }

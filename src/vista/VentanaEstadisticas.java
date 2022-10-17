@@ -44,10 +44,10 @@ public class VentanaEstadisticas extends Ventana {
     private JLabel labelSubtitulo = new JLabel("Universidad del Valle");
     private JButton buttonVolver = new JButton("Volver");
     private JLabel labelEstadisticas = new JLabel("Estadisticas");
-    private JLabel labelRodasRealizadas = new JLabel("Rondas realizadas:");
-    private JLabel labelMejorRonda = new JLabel("Mejor ronda:");
-    private JLabel labelPeorRonda = new JLabel("Peor ronda:");
-    private JLabel labelModaPalabra = new JLabel("Palabra más acertada:");
+    private JLabel labelRodasRealizadas = new JLabel();
+    private JLabel labelMejorRonda = new JLabel();
+    private JLabel labelPeorRonda = new JLabel();
+    private JLabel labelModaPalabra = new JLabel();
     
     // Constructor:
     public VentanaEstadisticas(Juego juego){
@@ -67,7 +67,12 @@ public class VentanaEstadisticas extends Ventana {
         cajaInferior.setLayout(new GridLayout(2, 1));
         cuerpoEstadisticas.setLayout(new GridLayout(4, 1, 0, 10));
         
-        // Añadidos de ventana inicial. 
+        // Añadidos de ventana inicial.
+        labelRodasRealizadas.setText("Rondas realizadas: " + juego.getRondasEjecutadas());
+        labelMejorRonda.setText("Mejor ronda: " + juego.getMejorRonda() + " (" + juego.getMayorPorcentajeRondas() + "%)");
+        labelPeorRonda.setText("Peor ronda: " + juego.getPeorRonda() + " (" + juego.getPeorPorcentajeRondas() + "%)");
+        labelModaPalabra.setText("Palabra más acertada: ");
+        
         labelEstadisticas.setFont(new Font("Arial", Font.BOLD, 20));
         labelTitulo.setFont(new Font("Arial", Font.BOLD, 34));
         labelTitulo.setHorizontalAlignment(JLabel.CENTER);
