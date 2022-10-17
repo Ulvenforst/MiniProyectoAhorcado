@@ -34,7 +34,6 @@ import javax.swing.*;
 public class VentanaTematicas extends Ventana {
     // Atributos:
     private Juego juego;
-    private Jugador jugador;
     private JLabel labelTitulo = new JLabel("El Ahorcado");
     private JLabel labelSubtitulo = new JLabel("Universidad del Valle");
     private JLabel labelEscogerTematica = new JLabel("Seleccione una temática: ");
@@ -49,9 +48,8 @@ public class VentanaTematicas extends Ventana {
     private JButton buttonVolver = new JButton("Volver");
     
     // Constructor:
-    public VentanaTematicas(Juego juego, Jugador jugador) {
+    public VentanaTematicas(Juego juego) {
         this.juego = juego;
-        this.jugador = jugador;
         
         // Listeners:
         buttonJugar.addActionListener(this);
@@ -116,7 +114,7 @@ public class VentanaTematicas extends Ventana {
             juego.setIndexCategoriaSeleccionada(indexCategoriaSeleccionada);
             juego.setNumeroDePalabrasAAdivinar(numeroDePalabrasAAdivinar);
             dispose();
-            VentanaJuego ventanaJuego = new VentanaJuego(juego, jugador);
+            VentanaJuego ventanaJuego = new VentanaJuego(juego);
 
         } catch (NumberFormatException exception){
             JOptionPane.showMessageDialog(null, "Por favor ingrese un número", "Error de ingreso de dato numérico", JOptionPane.ERROR_MESSAGE);

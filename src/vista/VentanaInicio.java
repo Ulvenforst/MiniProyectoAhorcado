@@ -111,10 +111,9 @@ public class VentanaInicio extends Ventana {
             fieldNombre.requestFocusInWindow();
             
         } else {
-            Juego juego = new Juego();
-            Jugador jugador = new Jugador(nombreJugador);
+            Juego juego = new Juego(nombreJugador);
             dispose();
-            VentanaTematicas ventanaTematicas = new VentanaTematicas(juego, jugador);
+            VentanaTematicas ventanaTematicas = new VentanaTematicas(juego);
         }
     }
 }

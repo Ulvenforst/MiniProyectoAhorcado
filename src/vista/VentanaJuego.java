@@ -34,7 +34,6 @@ import javax.swing.*;
 public class VentanaJuego extends Ventana {
     // Atributos:
     private Juego juego;
-    private Jugador jugador;
     private JPanel panelRejillaGeneral = new JPanel();
     private JPanel panelGraficaAhorcado = new JPanel();
     private JPanel panelInteraccionJugador = new JPanel();
@@ -44,24 +43,27 @@ public class VentanaJuego extends Ventana {
     private JLabel labelItentosTotales = new JLabel("Intentos Totales:");
     private JLabel labelIntentosRestantes = new JLabel("Intentos Restantes:");
     private JLabel labelIntentosEjecutados = new JLabel("Intentos Ejecutados:");
-    private JLabel labelSprites;
+    private JLabel labelSprites = new JLabel();
     private ImageIcon ahorcadoSprites;
-    private JLabel labelLineasPalabra;
+    private JLabel labelLineasPalabra = new JLabel();
     private JButton[] buttonAbecedario = new JButton[27];
     private JButton buttonSalir = new JButton("Salir");
-
-    // Palabras a adivinar (CAMBIAR PARA USO CON Juego.java)
-    private String palabraAdivinar = "Zanahoria"; // 7 letras.
-    private String listaLetrasValidas[] = palabraAdivinar.toLowerCase().split("");
-    private String lineas = new String();
-    private String lineasLetrasValidas[] = new String[palabraAdivinar.length()];
-    private int spriteContador = 2;
+    private String[] lineasLetrasValidas;
+    private int totalLetrasEnPalabraAAdivinar;
+    private int spriteContador = 1;
+    private int totalLetrasAdivinadas = 0;
+    private int intentosEjecutados = 0;
+    private int intentosCorrectos = 0;
+    private int intentosFallados = 0;
 
     
     // Constructor:
-    public VentanaJuego(Juego juego, Jugador jugador){
+    public VentanaJuego(Juego juego){
         this.juego = juego;
-        this.jugador = jugador;
+        
+        juego.empezarJuego();
+        System.out.println(juego.getPalabraAAdivinar());
+                
         // Listeners:
         buttonSalir.addActionListener(this);
 		
@@ -89,26 +91,12 @@ public class VentanaJuego extends Ventana {
             }
             ubicacionLetra++;
         }
-
-        // Carga de sprites.
-        try {
-            ahorcadoSprites = new ImageIcon(getClass().getResource("AhorcadoSprites/1.png"));
-            labelSprites = new JLabel(ahorcadoSprites);
-            panelGraficaAhorcado.add(labelSprites);
-        } catch (Exception e) {
-            System.out.println("La imagen no pudo ser encontrada.");
-        }
-
-        // Visualización de líneas de cada letra.
-        for(int contadorLetra = 0; contadorLetra < palabraAdivinar.length(); contadorLetra++) {
-            if(contadorLetra == palabraAdivinar.length() - 1) {
-                lineasLetrasValidas[contadorLetra] = "___";
-            } else {
-                lineasLetrasValidas[contadorLetra] = "___ ";
-            }
-        }
-        lineas = String.join("", lineasLetrasValidas);
-        labelLineasPalabra = new JLabel(lineas);
+        
+        // Cargar componentes dinámicos
+        totalLetrasEnPalabraAAdivinar = juego.getPalabraAAdivinar().length();
+        lineasLetrasValidas = new String[totalLetrasEnPalabraAAdivinar];
+        cargarLineas(juego.getPalabraAAdivinar(), (char)64);
+        cargarSprites();
 
         // Añadidos de ventana inicial. 
         labelLineasPalabra.setFont(new Font("Arial", Font.BOLD, 16));
@@ -125,48 +113,135 @@ public class VentanaJuego extends Ventana {
         panelRejillaGeneral.add(panelGraficaAhorcado);
         centerPanel.add(panelRejillaGeneral);        
 
-		// Mostrar Pantalla Inicial.
+        // Mostrar Pantalla Inicial.
         setVisible(true);
     }
 
     // Métodos
+    public void cargarLineas(String palabraAAdivinar, char letraEscogida){
+        if (letraEscogida == 64){
+            for (int contadorLetra = 0; contadorLetra < palabraAAdivinar.length(); contadorLetra++){
+                if(contadorLetra == palabraAAdivinar.length() - 1)
+                    lineasLetrasValidas[contadorLetra] = "___";
+                else
+                    lineasLetrasValidas[contadorLetra] = "___ ";
+            }
+        }
+        else {
+            String[] listaLetrasValidas = palabraAAdivinar.toLowerCase().split("");
+            for(int buscadorLetraEscogida = 0; buscadorLetraEscogida < palabraAAdivinar.length(); buscadorLetraEscogida++) {
+                if(letraEscogida == listaLetrasValidas[buscadorLetraEscogida].charAt(0)) {
+                    if(buscadorLetraEscogida == palabraAAdivinar.length() - 1)
+                        lineasLetrasValidas[buscadorLetraEscogida] = "  "+ letraEscogida + "  ";
+                    else
+                        lineasLetrasValidas[buscadorLetraEscogida] = "  "+ letraEscogida + "   ";
+                }
+            }
+        }
+        String lineas = String.join("", lineasLetrasValidas);
+        labelLineasPalabra.setText(lineas);
+    }
+    
+    public void cargarSprites()
+    {
+        try {
+            ahorcadoSprites = new ImageIcon(getClass().getResource("AhorcadoSprites/"+ spriteContador +".png"));
+            labelSprites.setIcon(ahorcadoSprites);
+            panelGraficaAhorcado.add(labelSprites);
+            spriteContador++;
+        } catch (Exception e) {
+            System.out.println("La imagen no pudo ser encontrada.");
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent evento){
         if (evento.getSource() == buttonSalir){
             dispose();
             VentanaInicio ventanaInicio = new VentanaInicio();
-        } else if (evento.getSource() != null) {
+            
+        } else if (evento.getSource() != null){
+            intentosEjecutados++;
             for (int busquedaBoton = 0; busquedaBoton < 27; busquedaBoton++) {
-                // Se obtiene el texto de la letra presionada.
                 if (evento.getSource() == buttonAbecedario[busquedaBoton]){
-                    System.out.println(buttonAbecedario[busquedaBoton].getText());
-                    // Validación de letra en palabra.
-                    if(Arrays.asList(listaLetrasValidas).contains(buttonAbecedario[busquedaBoton].getText())) {
-                        buttonAbecedario[busquedaBoton].setBackground(Color.GREEN);  
-
-                        // Aquí se cambia la línea por la letra
-                        for(int buscadorLetraElegida = 0; buscadorLetraElegida < palabraAdivinar.length(); buscadorLetraElegida++) {
-                            if(buttonAbecedario[busquedaBoton].getText().charAt(0) == listaLetrasValidas[buscadorLetraElegida].charAt(0)) {
-                                if(buscadorLetraElegida == palabraAdivinar.length() - 1) {
-                                    lineasLetrasValidas[buscadorLetraElegida] = "  "+ buttonAbecedario[busquedaBoton].getText() + "  ";
-                                } else {
-                                    lineasLetrasValidas[buscadorLetraElegida] = "  "+ buttonAbecedario[busquedaBoton].getText() + "   ";
-                                }
-                            }
-                        }
-                        lineas = String.join("", lineasLetrasValidas);
-                        labelLineasPalabra.setText(lineas);
-
-                    } else if (!Arrays.asList(listaLetrasValidas).contains(buttonAbecedario[busquedaBoton].getText()) && spriteContador <= 10) {
-                        buttonAbecedario[busquedaBoton].setBackground(Color.RED);
-                        ahorcadoSprites = new ImageIcon(getClass().getResource("AhorcadoSprites/"+ spriteContador++ +".png"));
-                        labelSprites.setIcon(ahorcadoSprites);
+                    String letraEscogida = buttonAbecedario[busquedaBoton].getText();
+                    if(juego.verificacionDeLetra(letraEscogida)){
+                        intentosCorrectos++;
+                        totalLetrasAdivinadas += juego.contarOcurrencias(letraEscogida);
+                        buttonAbecedario[busquedaBoton].setBackground(Color.GREEN);
+                        buttonAbecedario[busquedaBoton].setEnabled(false);
+                        cargarLineas(juego.getPalabraAAdivinar(), letraEscogida.charAt(0));
                     } else {
+                        intentosFallados++;
                         buttonAbecedario[busquedaBoton].setBackground(Color.RED);
+                        buttonAbecedario[busquedaBoton].setEnabled(false);
+                        cargarSprites();
                     }
-                    buttonAbecedario[busquedaBoton].setEnabled(false);
                 }
             }
+            verificarPerdedorOGanador();
         }
     }
+    
+    public void verificarPerdedorOGanador(){
+        if (intentosFallados >= 9)
+        {
+            JOptionPane.showMessageDialog(null, "Has sobrepasado el número de intentos permitidos ¡Perdiste!", "Perdiste", JOptionPane.ERROR_MESSAGE);
+            juego.palabraJugada();
+            juego.palabraNoAdivinada();
+            siguientePalabra();
+            
+        } else if (totalLetrasAdivinadas == totalLetrasEnPalabraAAdivinar){
+            JOptionPane.showMessageDialog(null, "Has adivinado la palabra. ¡Felicitaciones!", "Ganaste", JOptionPane.PLAIN_MESSAGE);
+            juego.palabraJugada();
+            juego.palabraAdivinada();
+            siguientePalabra();
+        }
+    }
+    
+    public void siguientePalabra(){
+        if (juego.getPalabrasJugadas() == juego.getNumeroDePalabrasAAdivinar()){
+            juego.rondaEjecutada();
+            mostrarEstadisticasRonda();
+//            jugarOtraRonda();
+
+        } else {
+            continuarJugando();            
+        }
+    }
+    
+    public void mostrarEstadisticasRonda(){
+        int palabrasAdivinadas = juego.getPalabrasAdivinadas();
+        int palabrasNoAdivinadas = juego.getPalabrasNoAdivinadas();
+        int palabrasDeEstaRonda = juego.getNumeroDePalabrasAAdivinar();
+        
+        double porcentajePalabrasAdivinadas = (double) palabrasAdivinadas / palabrasDeEstaRonda * 100;
+        porcentajePalabrasAdivinadas = Math.round(porcentajePalabrasAdivinadas*100.0)/100.0; 
+        
+        double porcentajePalabrasNoAdivinadas = (double) palabrasNoAdivinadas / palabrasDeEstaRonda * 100;
+        porcentajePalabrasNoAdivinadas = Math.round(porcentajePalabrasNoAdivinadas * 100.0)/100.0;
+        
+        JOptionPane.showMessageDialog(null, "Palabras adivinadas: " + palabrasAdivinadas + " (" + porcentajePalabrasAdivinadas + "%)"
+                + "\nPalabras no adivinadas: " + palabrasNoAdivinadas + " (" + porcentajePalabrasNoAdivinadas + "%)" ,"Estadísticas", JOptionPane.PLAIN_MESSAGE);
+    }
+    
+    public void jugarOtraRonda(){
+        
+    }
+    
+    public void continuarJugando(){
+        int continuar = JOptionPane.showConfirmDialog(null, "¿Deseas seguir jugando?", "Continuar", JOptionPane.YES_NO_OPTION);
+        if (continuar == JOptionPane.YES_OPTION){
+            dispose();
+            VentanaJuego nuevaVentanaJuego = new VentanaJuego(juego);
+        } else if (continuar == JOptionPane.NO_OPTION){
+            dispose();
+        } else {
+            dispose();
+        }
+        
+    }
+    
+    
+        
 }
