@@ -121,12 +121,6 @@ public class VentanaJuego extends Ventana {
     }
 
     // Métodos
-    // Pensaba en que podíamos crear un método para cargar dinámicamente la información de los intentos restantes, totalles, etc,
-    //similar a las funciones cargarLineas y cargas sprites
-//    public void cargarIntentos(){
-//        
-//    }
-    
     public void cargarLineas(String palabraAAdivinar, char letraEscogida){
         if (letraEscogida == 64){
             for (int contadorLetra = 0; contadorLetra < palabraAAdivinar.length(); contadorLetra++){
