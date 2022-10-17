@@ -113,9 +113,8 @@ public class VentanaTematicas extends Ventana {
         try{
             int numeroDePalabrasAAdivinar = Integer.parseInt(fieldNumeroDePalabras.getText());
 
-            if(numeroDePalabrasAAdivinar < 1) {
+            if(numeroDePalabrasAAdivinar < 1) 
                 throw new NumberFormatException("Número no lógico");
-            }
             
             int indexCategoriaSeleccionada = boxCategorias.getSelectedIndex();
             juego.setIndexCategoriaSeleccionada(indexCategoriaSeleccionada);
@@ -124,7 +123,7 @@ public class VentanaTematicas extends Ventana {
             VentanaJuego ventanaJuego = new VentanaJuego(juego);
 
         } catch (NumberFormatException exception){
-            JOptionPane.showMessageDialog(null, "Por favor ingrese un número", "Error de ingreso de dato numérico", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Por favor ingrese un número válido", "Error de ingreso de dato numérico", JOptionPane.ERROR_MESSAGE);
             fieldNumeroDePalabras.setText("");
             fieldNumeroDePalabras.requestFocus();
         }    

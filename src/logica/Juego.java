@@ -60,10 +60,8 @@ public class Juego {
     
     public int getMejorRonda(){
         int ronda = 0;
-
         for(int buscadorPosicion = 0; buscadorPosicion < porcentajesRondas.length; buscadorPosicion++) {
             if(porcentajesRondas[buscadorPosicion] == getMayorPorcentajeRondas()) {
-                System.out.println("getMayorPorcentajeRondas()" + getMayorPorcentajeRondas());
                 if(getMayorPorcentajeRondas() == 0) {
                     ronda = 0;
                 } else {
@@ -76,16 +74,10 @@ public class Juego {
     }
 
     public int getPeorRonda(){
-        int ronda = 1;
-
+        int ronda = 0;
         for(int buscadorPosicion = 0; buscadorPosicion < porcentajesRondas.length; buscadorPosicion++) {
-            System.out.println("getPeorPorcentajeRondas()" + getPeorPorcentajeRondas());
             if(porcentajesRondas[buscadorPosicion] == getPeorPorcentajeRondas()) {
-                if(getPeorPorcentajeRondas() == 0) {
-                    ronda = 1;
-                } else {
-                    ronda = buscadorPosicion + 1;
-                }
+                ronda = buscadorPosicion + 1;
                 break;
             }
         }
@@ -131,7 +123,6 @@ public class Juego {
                 if(palabra.equals(palabraInterna)){
                     cuentaModa++;
                 }
-
                 if(cuentaModa > maximaCuenta) {
                     maximaCuenta = cuentaModa;
                     moda = palabra;
@@ -148,12 +139,7 @@ public class Juego {
         double porcentajesMayor[] = new double[porcentajesRondas.length];
         porcentajesMayor = Arrays.copyOf(porcentajesRondas, porcentajesRondas.length);
         Arrays.sort(porcentajesMayor);
-
-        if(porcentajesRondas.length >= 1)
-            mayorPorcentaje = porcentajesMayor[porcentajesMayor.length - 1];
-        else
-            mayorPorcentaje = 0;
-
+        mayorPorcentaje = porcentajesMayor[porcentajesMayor.length - 1];
 
         return mayorPorcentaje;
     }
@@ -225,7 +211,6 @@ public class Juego {
         porcentajeRonda = (double) getPalabrasAdivinadas()/getNumeroDePalabrasAAdivinar() * 100;
         porcentajeRonda = Math.round(porcentajeRonda*100.0)/100.0;
         porcentajesRondas[porcentajesRondas.length - 1] = porcentajeRonda;
-        
         getMejorRonda();
         
         rondasEjecutadas++;

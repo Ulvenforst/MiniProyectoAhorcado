@@ -255,6 +255,7 @@ public class VentanaJuego extends Ventana {
             dispose();
             VentanaJuego nuevaVentanaJuego = new VentanaJuego(juego);
         } else if (continuar == JOptionPane.NO_OPTION){
+            juego.rondaEjecutada();
             dispose();
             VentanaEstadisticas nuevaVentanaEstadisticas = new VentanaEstadisticas(juego);
         } else {
