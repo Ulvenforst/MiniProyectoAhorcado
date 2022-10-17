@@ -45,9 +45,9 @@ public class VentanaEstadisticas extends Ventana {
     private JButton buttonVolver = new JButton("Volver");
     private JLabel labelEstadisticas = new JLabel("Estadisticas");
     private JLabel labelRodasRealizadas = new JLabel();
-    private JLabel labelMejorRonda = new JLabel();
-    private JLabel labelPeorRonda = new JLabel();
-    private JLabel labelModaPalabra = new JLabel();
+    private JLabel labelMejorRonda = new JLabel("Mejor ronda: -");
+    private JLabel labelPeorRonda = new JLabel("Peor ronda: -");
+    private JLabel labelModaPalabra = new JLabel("Palabra más acertada: -");
     
     // Constructor:
     public VentanaEstadisticas(Juego juego){
@@ -61,17 +61,25 @@ public class VentanaEstadisticas extends Ventana {
         northPanel.setBackground(new Color(79, 198, 198));
         panelCabecera.setLayout(new GridLayout(2, 1));
         panelCabecera.setBackground(new Color(0, 0, 0, 0));
-        rejillaGeneral.setPreferredSize(new Dimension(150, 300));
+        rejillaGeneral.setPreferredSize(new Dimension(300, 300));
         rejillaGeneral.setLayout(new GridLayout(2, 1));
         rejillaEstadisticas.setLayout(new GridLayout(2, 1));
         cajaInferior.setLayout(new GridLayout(2, 1));
-        cuerpoEstadisticas.setLayout(new GridLayout(4, 1, 0, 10));
+        cuerpoEstadisticas.setLayout(new GridLayout(4, 1, 0, 8));
         
         // Añadidos de ventana inicial.
         labelRodasRealizadas.setText("Rondas realizadas: " + juego.getRondasEjecutadas());
-        labelMejorRonda.setText("Mejor ronda: " + juego.getMejorRonda() + " (" + juego.getMayorPorcentajeRondas() + "%)");
-        labelPeorRonda.setText("Peor ronda: " + juego.getPeorRonda() + " (" + juego.getPeorPorcentajeRondas() + "%)");
-        labelModaPalabra.setText("Palabra más acertada: ");
+        if(juego.getRondasEjecutadas() != 0) {
+            labelMejorRonda.setText("Mejor ronda: " + juego.getMejorRonda() + " (" + juego.getMayorPorcentajeRondas() + "%)");
+            labelPeorRonda.setText("Peor ronda: " + juego.getPeorRonda() + " (" + juego.getPeorPorcentajeRondas() + "%)");
+            labelModaPalabra.setText("Palabra más acertada: " + juego.palabraMasAcertada());
+        }
+
+
+        labelRodasRealizadas.setHorizontalAlignment(JLabel.CENTER);
+        labelMejorRonda.setHorizontalAlignment(JLabel.CENTER);
+        labelPeorRonda.setHorizontalAlignment(JLabel.CENTER);
+        labelModaPalabra.setHorizontalAlignment(JLabel.CENTER);
         
         labelEstadisticas.setFont(new Font("Arial", Font.BOLD, 20));
         labelTitulo.setFont(new Font("Arial", Font.BOLD, 34));

@@ -25,7 +25,8 @@ import java.util.*;
 
 public class Juego {
     //Atributos:
-    private static double porcentajesRondas[] = new double[0];
+    private double porcentajesRondas[] = new double[0];
+    private String modaPalabraAdivinada[] = new String[0];
     private String nombreDelJugador;
     private String[] categorias = {"Países", "Frutas", "Colores", "Animales", "Herramientas"};
     private String[][] palabrasPorCategoria = new String[categorias.length][];
@@ -57,7 +58,7 @@ public class Juego {
     }
     
     public int getMejorRonda(){
-        int ronda = 1;
+        int ronda = 0;
 
         for(int buscadorPosicion = 0; buscadorPosicion < porcentajesRondas.length; buscadorPosicion++) {
             if(porcentajesRondas[buscadorPosicion] == getMayorPorcentajeRondas()) {
@@ -69,7 +70,7 @@ public class Juego {
     }
 
     public int getPeorRonda(){
-        int ronda = 1;
+        int ronda = 0;
 
         for(int buscadorPosicion = 0; buscadorPosicion < porcentajesRondas.length; buscadorPosicion++) {
             if(porcentajesRondas[buscadorPosicion] == getPeorPorcentajeRondas()) {
@@ -106,6 +107,38 @@ public class Juego {
     
     public int getRondasEjecutadas(){
         return rondasEjecutadas;
+    }
+
+    public String palabraMasAcertada(){
+        // Crear HashMap para almacenar palabras y su frecuencia
+        HashMap<String, Integer> mapeado = new HashMap<String, Integer>();
+ 
+        // Iterar a través de una matriz de palabras
+        for (int palabraBuscada = 0; palabraBuscada < modaPalabraAdivinada.length; palabraBuscada++) {
+            // Si la palabra ya existe en HashMap, aumente su conteo en 1
+            if (mapeado.containsKey(modaPalabraAdivinada[palabraBuscada])) {
+                mapeado.put(modaPalabraAdivinada[palabraBuscada], mapeado.get(modaPalabraAdivinada[palabraBuscada]) + 1);
+            }
+            // De lo contrario, agregue la palabra a HashMap
+            else {
+                mapeado.put(modaPalabraAdivinada[palabraBuscada], 1);
+            }
+        }
+ 
+        // Crear conjunto para iterar sobre HashMap
+        Set<Map.Entry<String, Integer> > set = mapeado.entrySet();
+        String moda = "";
+        int value = 0;
+ 
+        for (Map.Entry<String, Integer> me : set) {
+            // Check for word having highest frequency
+            if (me.getValue() > value) {
+                value = me.getValue();
+                moda = me.getKey();
+            }
+        }
+        System.out.println(moda);
+        return moda;
     }
 
     public double getMayorPorcentajeRondas(){
@@ -166,6 +199,8 @@ public class Juego {
     
     public void palabraAdivinada(){
         palabrasAdivinadas++;
+        modaPalabraAdivinada = Arrays.copyOf(modaPalabraAdivinada, modaPalabraAdivinada.length + 1);
+        modaPalabraAdivinada[modaPalabraAdivinada.length - 1] = getPalabraAAdivinar();
     }
     
     public void palabraJugada(){
@@ -175,7 +210,6 @@ public class Juego {
     public void rondaEjecutada(){
         // Se simula un append al arreglo de juegos.
         porcentajesRondas = Arrays.copyOf(porcentajesRondas, porcentajesRondas.length + 1);
-        
         double porcentajeRonda;
         porcentajeRonda = (double) getPalabrasAdivinadas()/getNumeroDePalabrasAAdivinar() * 100;
         porcentajeRonda = Math.round(porcentajeRonda*100.0)/100.0;
