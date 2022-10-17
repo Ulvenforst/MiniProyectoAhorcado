@@ -32,10 +32,10 @@ public class Juego {
     private String palabraAAdivinar;
     private int indexCategoriaSeleccionada;
     private int numeroDePalabrasAAdividnar;
-    private int rondasEjecutadas = 0;
     private int palabrasJugadas = 0;
     private int palabrasNoAdivinadas = 0;
     private  int palabrasAdivinadas = 0;
+    private int rondasEjecutadas = 0;
     
     //Métodos:
     public Juego(String nombreDelJugador) {
@@ -91,7 +91,7 @@ public class Juego {
         return palabrasAdivinadas;
     }
     
-    public void empezarJuego(){
+    public void nuevaPalabra(){
         int totalPalabrasEnCategoria = palabrasPorCategoria[indexCategoriaSeleccionada].length - 1;
         int ubicacionAleatoria = (int) (Math.random() * totalPalabrasEnCategoria);
         palabraAAdivinar = palabrasPorCategoria[indexCategoriaSeleccionada][ubicacionAleatoria];
@@ -129,6 +129,15 @@ public class Juego {
     
     public void rondaEjecutada(){
         rondasEjecutadas++;
+    }
+    
+    public void nuevaRonda(){
+        indexCategoriaSeleccionada = 0;
+        numeroDePalabrasAAdividnar = 0;
+        palabrasNoAdivinadas = 0;
+        palabrasAdivinadas = 0;
+        palabrasJugadas = 0;
+        
     }
     
  }

@@ -61,7 +61,7 @@ public class VentanaJuego extends Ventana {
     public VentanaJuego(Juego juego){
         this.juego = juego;
         
-        juego.empezarJuego();
+        juego.nuevaPalabra();
         System.out.println(juego.getPalabraAAdivinar());
                 
         // Listeners:
@@ -118,6 +118,12 @@ public class VentanaJuego extends Ventana {
     }
 
     // Métodos
+    // Pensaba en que podíamos crear un método para cargar dinámicamente la información de los intentos restantes, totalles, etc,
+    //similar a las funciones cargarLineas y cargas sprites
+//    public void cargarIntentos(){
+//        
+//    }
+    
     public void cargarLineas(String palabraAAdivinar, char letraEscogida){
         if (letraEscogida == 64){
             for (int contadorLetra = 0; contadorLetra < palabraAAdivinar.length(); contadorLetra++){
@@ -203,7 +209,7 @@ public class VentanaJuego extends Ventana {
         if (juego.getPalabrasJugadas() == juego.getNumeroDePalabrasAAdivinar()){
             juego.rondaEjecutada();
             mostrarEstadisticasRonda();
-//            jugarOtraRonda();
+            jugarOtraRonda();
 
         } else {
             continuarJugando();            
@@ -222,11 +228,28 @@ public class VentanaJuego extends Ventana {
         porcentajePalabrasNoAdivinadas = Math.round(porcentajePalabrasNoAdivinadas * 100.0)/100.0;
         
         JOptionPane.showMessageDialog(null, "Palabras adivinadas: " + palabrasAdivinadas + " (" + porcentajePalabrasAdivinadas + "%)"
-                + "\nPalabras no adivinadas: " + palabrasNoAdivinadas + " (" + porcentajePalabrasNoAdivinadas + "%)" ,"Estadísticas", JOptionPane.PLAIN_MESSAGE);
+                + "\nPalabras no adivinadas: " + palabrasNoAdivinadas + " (" + porcentajePalabrasNoAdivinadas + "%)" ,"Estadísticas de la ronda", JOptionPane.PLAIN_MESSAGE);
     }
     
     public void jugarOtraRonda(){
+        int continuar = JOptionPane.showConfirmDialog(null, "¿Deseas iniciar una nueva ronda?", "Nueva ronda", JOptionPane.YES_NO_OPTION);
+        if (continuar == JOptionPane.YES_OPTION){
+            dispose();
+            juego.nuevaRonda();
+            VentanaTematicas nuevaVentanaTematicas = new VentanaTematicas(juego);
+        } else if (continuar == JOptionPane.NO_OPTION){
+            mostrarEstadisticasFinales();
+            dispose();
+        } else {
+            mostrarEstadisticasFinales();
+            dispose();
+        } 
+    }
+    
+    public void mostrarEstadisticasFinales(){
+        int rondasEjecutadas = juego.getRondasEjecutadas();
         
+        JOptionPane.showMessageDialog(null, "Rondas jugadas: " + rondasEjecutadas + "","Estadísticas Finales", JOptionPane.PLAIN_MESSAGE);
     }
     
     public void continuarJugando(){
@@ -239,9 +262,5 @@ public class VentanaJuego extends Ventana {
         } else {
             dispose();
         }
-        
     }
-    
-    
-        
 }
