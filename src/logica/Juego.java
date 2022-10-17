@@ -55,7 +55,6 @@ public class Juego {
     }
     
     public void setNumeroDePalabrasAAdivinar(int numeroDePalabrasAAdivinar){
-        System.out.println("numeroDePalabrasAAdivinar: " + numeroDePalabrasAAdivinar);
         this.numeroDePalabrasAAdividnar = numeroDePalabrasAAdivinar;
     }
     
@@ -150,10 +149,6 @@ public class Juego {
         Collection<Integer> values = sortedMap.values(); 
   
         ArrayList<Integer> listOfValues = new ArrayList<>(values); 
-
-        System.out.println("modaPalabraAdivinada.length: "+modaPalabraAdivinada.length);
-        System.out.println("listOfValues.size(): "+listOfValues.size());
-        
         if(listOfValues.size() > 1){
             if(listOfValues.get(listOfValues.size()-1) == listOfValues.get(listOfValues.size()-2)) {
                 moda = "Empate";
