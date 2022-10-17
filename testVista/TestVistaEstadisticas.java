@@ -1,7 +1,7 @@
-import vista.VentanaEstadisticas;
+// import vista.VentanaEstadisticas;
 
-public class TestVistaEstadisticas {
-    public static void main(String[] args) {
-        VentanaEstadisticas ventana = new VentanaEstadisticas();
-    }   
-}
+// public class TestVistaEstadisticas {
+//     public static void main(String[] args) {
+//         VentanaEstadisticas ventana = new VentanaEstadisticas();
+//     }   
+// }

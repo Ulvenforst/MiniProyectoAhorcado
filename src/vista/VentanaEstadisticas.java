@@ -58,11 +58,11 @@ public class VentanaEstadisticas extends Ventana {
         northPanel.setBackground(new Color(79, 198, 198));
         panelCabecera.setLayout(new GridLayout(2, 1));
         panelCabecera.setBackground(new Color(0, 0, 0, 0));
+        rejillaGeneral.setPreferredSize(new Dimension(150, 300));
         rejillaGeneral.setLayout(new GridLayout(2, 1));
         rejillaEstadisticas.setLayout(new GridLayout(2, 1));
         cajaInferior.setLayout(new GridLayout(2, 1));
         cuerpoEstadisticas.setLayout(new GridLayout(4, 1, 0, 10));
-        rejillaGeneral.setPreferredSize(new Dimension(150, 300));
         
         // Añadidos de ventana inicial. 
         labelEstadisticas.setFont(new Font("Arial", Font.BOLD, 20));
