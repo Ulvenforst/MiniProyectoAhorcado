@@ -54,7 +54,6 @@ public class VentanaInformacion extends Ventana {
         panelCabecera.setBackground(new Color(0, 0, 0, 0));
         panelPrincipal.setLayout(new GridLayout(6, 1, 0, 5));
         panelPrincipal.setPreferredSize(new Dimension(500, 300));
-        panelFinal.setLayout(new GridLayout(1, 3));
 
 
         // Añadidos de ventana inicial. 
@@ -68,7 +67,7 @@ public class VentanaInformacion extends Ventana {
         
         labelBeneficios.setFont(new Font("Arial", Font.BOLD, 20));
         labelLinea1 = new JLabel("<html>El ahorcado es una excelente herramienta para aprender de forma divertida y así potenciar nuestras habilidades cognitivas, lógicas y lingüísticas."
-                + " Algunos de los beneficios de este juego son:  </html");
+                + " Algunos de los beneficios de este juego son: </html");
         labelLinea1.setFont(new Font("Arial", Font.PLAIN, 14));
         labelLinea2 = new JLabel("<html>* Aumenta la retentiva y desarrolla la capacidad lógica del jugador. </html");
         labelLinea2.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -76,10 +75,7 @@ public class VentanaInformacion extends Ventana {
         labelLinea3.setFont(new Font("Arial", Font.PLAIN, 14));
         labelLinea4 = new JLabel("<html>* Amplía el vocabulario y mejora la ortografía. </html");
         labelLinea4.setFont(new Font("Arial", Font.PLAIN, 14));
-        panelFinal.add(new JPanel());
         panelFinal.add(buttonVolver);
-        panelFinal.add(new JPanel());
-        
         panelPrincipal.add(labelBeneficios);
         panelPrincipal.add(labelLinea1);
         panelPrincipal.add(labelLinea2);

@@ -52,7 +52,6 @@ public class VentanaInstrucciones extends Ventana {
         panelCabecera.setBackground(new Color(0, 0, 0, 0));
         panelPrincipal.setLayout(new GridLayout(5, 1, 0, 5));
         panelPrincipal.setPreferredSize(new Dimension(370, 270));
-        panelFinal.setLayout(new GridLayout(1, 3));
 
         // Añadidos de ventana inicial. 
         labelTitulo.setFont(new Font("Arial", Font.BOLD, 34));
@@ -68,9 +67,7 @@ public class VentanaInstrucciones extends Ventana {
         labelPrimeraInstruccion.setFont(new Font("Arial", Font.PLAIN, 14));
         labelSegundaInstruccion = new JLabel("<html>* A medida que vas adivinando la palabra, las letras cambiarán de color: el verde indica que la letra sí hace parte de la palabra y el rojo indica lo contrario.</html>");
         labelSegundaInstruccion.setFont(new Font("Arial", Font.PLAIN, 14));
-        panelFinal.add(new JPanel());
         panelFinal.add(buttonVolver);
-        panelFinal.add(new JPanel());
         panelPrincipal.add(labelInstrucciones);
         panelPrincipal.add(labelPrimeraInstruccion);
         panelPrincipal.add(labelSegundaInstruccion);
