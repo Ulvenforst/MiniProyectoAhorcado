@@ -45,7 +45,7 @@ public class Juego {
 
         palabrasPorCategoria[0] = new String[]{"Alemania", "Australia", "Argentina", "Bolivia", "Bulgaria", "Colombia", "Croacia", "Camboya", "Dinamarca", "España", "Finlandia", "Honduras", "Jamaica", "Jordania", "Kenia", "Kirguistan", "Kuwait", "Namibia", "Nigeria", "Noruega", "Peru", "Polonia", "Portugal", "Panama", "Suecia", "Suiza", "Somalia", "Siria", "Tanzania", "Ucrania", "Uganda", "Uruguay", "Venezuela", "Vietnam"};
         palabrasPorCategoria[1] = new String[]{"Arandano", "Banano", "Cereza", "Ciruela", "Durazno", "Frambuesa", "Fresa", "Granadilla", "Granada", "Kiwi", "Limon", "Mandarina", "Mango", "Manzana", "Maracuya", "Melon", "Mora", "Naranja", "Papaya"};
-        palabrasPorCategoria[2] = new String[]{"Amarillo", "Ambar", "Azabache", "Azul", "Beige", "Blanco", "Bronce", "Cafe", "Carmesi", "Castaño", "Celeste", "Dorado", "Fucsia", "Gris", "Indigo", "Magenta", "Marron", "Naranja", "Negro", "Ocre", "Plata", "Platino", "Purpura", "Turquesa", "Vinotinto", "Violeta"};
+        palabrasPorCategoria[2] = new String[]{"A", "B", "A", "C", "D", "E"};
         palabrasPorCategoria[3] = new String[]{"Abeja", "Aguila", "Araña", "Ballena", "Caballo", "Cangrejo", "Chimpance", "Cocodrilo", "Elefante", "Estrella de Mar", "Flamenco", "Foca", "Gallina", "Ganso", "Gato", "Hipopotamo", "Hormiga", "Iguana", "Jaguar", "Jirafa", "Koala", "Leon", "Leopardo", "Mapache", "Mariposa", "Murcielago", "Ñu", "Oso", "Oveja", "Paloma", "Panda", "Pato", "Pavo", "Pinguino", "Sapo", "Serpiente", "Tiburon", "Tigre", "Tortuga", "Zorro"};
         palabrasPorCategoria[4] = new String[]{"Alicate", "Brocha", "Broca", "Bisturi", "Cepillo", "Cuchillo",  "Destornillador", "Escalpelo", "Escuadra", "Espatula", "Llave", "Machete", "Manguera", "Navaja", "Pinza", "Sierra", "Tijeras", "Tornillo"};
     }
@@ -150,8 +150,11 @@ public class Juego {
         Collection<Integer> values = sortedMap.values(); 
   
         ArrayList<Integer> listOfValues = new ArrayList<>(values); 
+
+        System.out.println("modaPalabraAdivinada.length: "+modaPalabraAdivinada.length);
+        System.out.println("listOfValues.size(): "+listOfValues.size());
         
-        if(modaPalabraAdivinada.length > 1){
+        if(listOfValues.size() > 1){
             if(listOfValues.get(listOfValues.size()-1) == listOfValues.get(listOfValues.size()-2)) {
                 moda = "Empate";
             } else {
