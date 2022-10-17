@@ -68,12 +68,11 @@ public class VentanaEstadisticas extends Ventana {
         cuerpoEstadisticas.setLayout(new GridLayout(4, 1, 0, 8));
         
         // Añadidos de ventana inicial.
+        System.out.println("juego.getNumeroDePalabrasAAdivinar(): " + juego.getNumeroDePalabrasAAdivinar());
         labelRodasRealizadas.setText("Rondas realizadas: " + juego.getRondasEjecutadas());
-        if(juego.getRondasEjecutadas() != 0) {
-            labelMejorRonda.setText("Mejor ronda: " + juego.getMejorRonda() + " (" + juego.getMayorPorcentajeRondas() + "%)");
-            labelPeorRonda.setText("Peor ronda: " + juego.getPeorRonda() + " (" + juego.getPeorPorcentajeRondas() + "%)");
-            labelModaPalabra.setText("Palabra más acertada: " + juego.palabraMasAcertada());
-        }
+        labelMejorRonda.setText("Mejor ronda: " + juego.getMejorRonda() + " (" + juego.getMayorPorcentajeRondas() + "%)");
+        labelPeorRonda.setText("Peor ronda: " + juego.getPeorRonda() + " (" + juego.getPeorPorcentajeRondas() + "%)");
+        labelModaPalabra.setText("Palabra más acertada: " + juego.palabraMasAcertada());
 
 
         labelRodasRealizadas.setHorizontalAlignment(JLabel.CENTER);

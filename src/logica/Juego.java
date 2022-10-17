@@ -54,6 +54,7 @@ public class Juego {
     }
     
     public void setNumeroDePalabrasAAdivinar(int numeroDePalabrasAAdivinar){
+        System.out.println("numeroDePalabrasAAdivinar: " + numeroDePalabrasAAdivinar);
         this.numeroDePalabrasAAdividnar = numeroDePalabrasAAdivinar;
     }
     
@@ -62,7 +63,12 @@ public class Juego {
 
         for(int buscadorPosicion = 0; buscadorPosicion < porcentajesRondas.length; buscadorPosicion++) {
             if(porcentajesRondas[buscadorPosicion] == getMayorPorcentajeRondas()) {
-                ronda = buscadorPosicion + 1;
+                System.out.println("getMayorPorcentajeRondas()" + getMayorPorcentajeRondas());
+                if(getMayorPorcentajeRondas() == 0) {
+                    ronda = 0;
+                } else {
+                    ronda = buscadorPosicion + 1;
+                }
                 break;
             }
         }
@@ -70,11 +76,16 @@ public class Juego {
     }
 
     public int getPeorRonda(){
-        int ronda = 0;
+        int ronda = 1;
 
         for(int buscadorPosicion = 0; buscadorPosicion < porcentajesRondas.length; buscadorPosicion++) {
+            System.out.println("getPeorPorcentajeRondas()" + getPeorPorcentajeRondas());
             if(porcentajesRondas[buscadorPosicion] == getPeorPorcentajeRondas()) {
-                ronda = buscadorPosicion + 1;
+                if(getPeorPorcentajeRondas() == 0) {
+                    ronda = 1;
+                } else {
+                    ronda = buscadorPosicion + 1;
+                }
                 break;
             }
         }
@@ -110,33 +121,24 @@ public class Juego {
     }
 
     public String palabraMasAcertada(){
-        // Crear HashMap para almacenar palabras y su frecuencia
-        HashMap<String, Integer> mapeado = new HashMap<String, Integer>();
- 
-        // Iterar a través de una matriz de palabras
-        for (int palabraBuscada = 0; palabraBuscada < modaPalabraAdivinada.length; palabraBuscada++) {
-            // Si la palabra ya existe en HashMap, aumente su conteo en 1
-            if (mapeado.containsKey(modaPalabraAdivinada[palabraBuscada])) {
-                mapeado.put(modaPalabraAdivinada[palabraBuscada], mapeado.get(modaPalabraAdivinada[palabraBuscada]) + 1);
-            }
-            // De lo contrario, agregue la palabra a HashMap
-            else {
-                mapeado.put(modaPalabraAdivinada[palabraBuscada], 1);
-            }
-        }
- 
-        // Crear conjunto para iterar sobre HashMap
-        Set<Map.Entry<String, Integer> > set = mapeado.entrySet();
         String moda = "";
-        int value = 0;
- 
-        for (Map.Entry<String, Integer> me : set) {
-            // Check for word having highest frequency
-            if (me.getValue() > value) {
-                value = me.getValue();
-                moda = me.getKey();
+        int cuentaModa = 0;
+        int maximaCuenta = 0;
+
+        for(String palabra : modaPalabraAdivinada) {
+            cuentaModa = 1;
+            for(String palabraInterna : modaPalabraAdivinada) {
+                if(palabra.equals(palabraInterna)){
+                    cuentaModa++;
+                }
+
+                if(cuentaModa > maximaCuenta) {
+                    maximaCuenta = cuentaModa;
+                    moda = palabra;
+                }
             }
         }
+
         System.out.println(moda);
         return moda;
     }
@@ -146,7 +148,12 @@ public class Juego {
         double porcentajesMayor[] = new double[porcentajesRondas.length];
         porcentajesMayor = Arrays.copyOf(porcentajesRondas, porcentajesRondas.length);
         Arrays.sort(porcentajesMayor);
-        mayorPorcentaje = porcentajesMayor[porcentajesMayor.length - 1];
+
+        if(porcentajesRondas.length >= 1)
+            mayorPorcentaje = porcentajesMayor[porcentajesMayor.length - 1];
+        else
+            mayorPorcentaje = 0;
+
 
         return mayorPorcentaje;
     }
@@ -156,7 +163,11 @@ public class Juego {
         double porcentajesMayor[] = new double[porcentajesRondas.length];
         porcentajesMayor = Arrays.copyOf(porcentajesRondas, porcentajesRondas.length);
         Arrays.sort(porcentajesMayor);
-        peorPorcentaje = porcentajesMayor[0];
+
+        if(porcentajesRondas.length > 1)
+            peorPorcentaje = porcentajesMayor[0];
+        else
+            peorPorcentaje = 0;
 
         return peorPorcentaje;
     }

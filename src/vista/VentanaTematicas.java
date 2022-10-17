@@ -29,6 +29,8 @@ import logica.*;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+
 import javax.swing.*;
 
 public class VentanaTematicas extends Ventana {
@@ -109,8 +111,13 @@ public class VentanaTematicas extends Ventana {
     
     public void iniciarJuego(){
         try{
-            int indexCategoriaSeleccionada = boxCategorias.getSelectedIndex();
             int numeroDePalabrasAAdivinar = Integer.parseInt(fieldNumeroDePalabras.getText());
+
+            if(numeroDePalabrasAAdivinar < 1) {
+                throw new NumberFormatException("Número no lógico");
+            }
+            
+            int indexCategoriaSeleccionada = boxCategorias.getSelectedIndex();
             juego.setIndexCategoriaSeleccionada(indexCategoriaSeleccionada);
             juego.setNumeroDePalabrasAAdivinar(numeroDePalabrasAAdivinar);
             dispose();
