@@ -21,6 +21,7 @@
 */
 
 package logica;
+import java.util.Map.Entry;
 import java.util.*;
 
 public class Juego {
@@ -114,23 +115,52 @@ public class Juego {
 
     public String palabraMasAcertada(){
         String moda = "";
-        int cuentaModa = 0;
-        int maximaCuenta = 0;
 
-        for(String palabra : modaPalabraAdivinada) {
-            cuentaModa = 1;
-            for(String palabraInterna : modaPalabraAdivinada) {
-                if(palabra.equals(palabraInterna)){
-                    cuentaModa++;
-                }
-                if(cuentaModa > maximaCuenta) {
-                    maximaCuenta = cuentaModa;
-                    moda = palabra;
+        Map<String, Integer> mp = new HashMap<>();
+        LinkedHashMap<String, Integer> sortedMap = new LinkedHashMap<>();
+        ArrayList<Integer> list = new ArrayList<>();
+ 
+        for (int i = 0; i < modaPalabraAdivinada.length; i++)
+        {
+            if (mp.containsKey(modaPalabraAdivinada[i]))
+            {
+                mp.put(modaPalabraAdivinada[i], mp.get(modaPalabraAdivinada[i]) + 1);
+            }
+            else
+            {
+                mp.put(modaPalabraAdivinada[i], 1);
+            }
+        }
+
+        for (Map.Entry<String, Integer> entry : mp.entrySet()) {
+            list.add(entry.getValue());
+        }
+        Collections.sort(list); 
+        for (int num : list) {
+            for (Entry<String, Integer> entry : mp.entrySet()) {
+                if (entry.getValue().equals(num)) {
+                    sortedMap.put(entry.getKey(), num);
                 }
             }
         }
 
-        System.out.println(moda);
+        Set<String> keySet = sortedMap.keySet();
+        ArrayList<String> listOfKeys = new ArrayList<String>(keySet); 
+  
+        Collection<Integer> values = sortedMap.values(); 
+  
+        ArrayList<Integer> listOfValues = new ArrayList<>(values); 
+        
+        if(modaPalabraAdivinada.length > 1){
+            if(listOfValues.get(listOfValues.size()-1) == listOfValues.get(listOfValues.size()-2)) {
+                moda = "Empate";
+            } else {
+                moda = listOfKeys.get(listOfValues.size()-1);
+            }
+        } else if (listOfValues.size() == 1){
+            moda = modaPalabraAdivinada[0];
+        }
+
         return moda;
     }
 
@@ -150,7 +180,7 @@ public class Juego {
         porcentajesMayor = Arrays.copyOf(porcentajesRondas, porcentajesRondas.length);
         Arrays.sort(porcentajesMayor);
 
-        if(porcentajesRondas.length > 1)
+        if(porcentajesRondas.length > 1 && (porcentajesMayor[porcentajesMayor.length-1] != porcentajesMayor[0]))
             peorPorcentaje = porcentajesMayor[0];
         else
             peorPorcentaje = 0;

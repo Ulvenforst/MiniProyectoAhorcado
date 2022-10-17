@@ -43,7 +43,7 @@ public class VentanaEstadisticas extends Ventana {
     private JLabel labelTitulo = new JLabel("El Ahorcado");
     private JLabel labelSubtitulo = new JLabel("Universidad del Valle");
     private JButton buttonVolver = new JButton("Volver");
-    private JLabel labelEstadisticas = new JLabel("Estadisticas");
+    private JLabel labelEstadisticas = new JLabel("Estadísticas");
     private JLabel labelRodasRealizadas = new JLabel();
     private JLabel labelMejorRonda = new JLabel("Mejor ronda: -");
     private JLabel labelPeorRonda = new JLabel("Peor ronda: -");
@@ -68,7 +68,7 @@ public class VentanaEstadisticas extends Ventana {
         cuerpoEstadisticas.setLayout(new GridLayout(4, 1, 0, 8));
         
         // Añadidos de ventana inicial.
-        System.out.println("juego.getNumeroDePalabrasAAdivinar(): " + juego.getNumeroDePalabrasAAdivinar());
+        // Una buena opción sería incluir este bloque en un try catch
         labelRodasRealizadas.setText("Rondas realizadas: " + juego.getRondasEjecutadas());
         labelMejorRonda.setText("Mejor ronda: " + juego.getMejorRonda() + " (" + juego.getMayorPorcentajeRondas() + "%)");
         labelPeorRonda.setText("Peor ronda: " + juego.getPeorRonda() + " (" + juego.getPeorPorcentajeRondas() + "%)");
@@ -79,7 +79,6 @@ public class VentanaEstadisticas extends Ventana {
         labelMejorRonda.setHorizontalAlignment(JLabel.CENTER);
         labelPeorRonda.setHorizontalAlignment(JLabel.CENTER);
         labelModaPalabra.setHorizontalAlignment(JLabel.CENTER);
-        
         labelEstadisticas.setFont(new Font("Arial", Font.BOLD, 20));
         labelTitulo.setFont(new Font("Arial", Font.BOLD, 34));
         labelTitulo.setHorizontalAlignment(JLabel.CENTER);
