@@ -115,47 +115,47 @@ public class Juego {
     public String palabraMasAcertada(){
         String moda = "";
 
-        Map<String, Integer> mp = new HashMap<>();
-        LinkedHashMap<String, Integer> sortedMap = new LinkedHashMap<>();
-        ArrayList<Integer> list = new ArrayList<>();
+        Map<String, Integer> mapaModa = new HashMap<>();
+        LinkedHashMap<String, Integer> mapaOrdenado = new LinkedHashMap<>();
+        ArrayList<Integer> listaModa = new ArrayList<>();
  
-        for (int i = 0; i < modaPalabraAdivinada.length; i++)
+        for (int ordenadorPalabra = 0; ordenadorPalabra < modaPalabraAdivinada.length; ordenadorPalabra++)
         {
-            if (mp.containsKey(modaPalabraAdivinada[i]))
+            if (mapaModa.containsKey(modaPalabraAdivinada[ordenadorPalabra]))
             {
-                mp.put(modaPalabraAdivinada[i], mp.get(modaPalabraAdivinada[i]) + 1);
+                mapaModa.put(modaPalabraAdivinada[ordenadorPalabra], mapaModa.get(modaPalabraAdivinada[ordenadorPalabra]) + 1);
             }
             else
             {
-                mp.put(modaPalabraAdivinada[i], 1);
+                mapaModa.put(modaPalabraAdivinada[ordenadorPalabra], 1);
             }
         }
 
-        for (Map.Entry<String, Integer> entry : mp.entrySet()) {
-            list.add(entry.getValue());
+        for (Map.Entry<String, Integer> entry : mapaModa.entrySet()) {
+            listaModa.add(entry.getValue());
         }
-        Collections.sort(list); 
-        for (int num : list) {
-            for (Entry<String, Integer> entry : mp.entrySet()) {
+        Collections.sort(listaModa); 
+        for (int num : listaModa) {
+            for (Entry<String, Integer> entry : mapaModa.entrySet()) {
                 if (entry.getValue().equals(num)) {
-                    sortedMap.put(entry.getKey(), num);
+                    mapaOrdenado.put(entry.getKey(), num);
                 }
             }
         }
 
-        Set<String> keySet = sortedMap.keySet();
+        Set<String> keySet = mapaOrdenado.keySet();
         ArrayList<String> listOfKeys = new ArrayList<String>(keySet); 
   
-        Collection<Integer> values = sortedMap.values(); 
+        Collection<Integer> values = mapaOrdenado.values(); 
   
-        ArrayList<Integer> listOfValues = new ArrayList<>(values); 
-        if(listOfValues.size() > 1){
-            if(listOfValues.get(listOfValues.size()-1) == listOfValues.get(listOfValues.size()-2)) {
+        ArrayList<Integer> listaNumeroRepeticion = new ArrayList<>(values); 
+        if(listaNumeroRepeticion.size() > 1){
+            if(listaNumeroRepeticion.get(listaNumeroRepeticion.size()-1) == listaNumeroRepeticion.get(listaNumeroRepeticion.size()-2)) {
                 moda = "Empate";
             } else {
-                moda = listOfKeys.get(listOfValues.size()-1);
+                moda = listOfKeys.get(listaNumeroRepeticion.size()-1);
             }
-        } else if (listOfValues.size() == 1){
+        } else if (listaNumeroRepeticion.size() == 1){
             moda = modaPalabraAdivinada[0];
         }
 
