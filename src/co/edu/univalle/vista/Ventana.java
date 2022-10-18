@@ -21,7 +21,7 @@
     -Implementa la interfaz ActionListener, del paquete awt.event.
 */
 
-package vista;
+package co.edu.univalle.vista;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;

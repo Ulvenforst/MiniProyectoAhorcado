@@ -23,9 +23,9 @@
     -Es una Ventana.
  */
 
-package vista;
+package co.edu.univalle.vista;
 
-import logica.*;
+import co.edu.univalle.logica.Juego;
 
 import java.awt.*;
 import java.awt.event.*;

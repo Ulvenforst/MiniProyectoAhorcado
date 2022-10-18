@@ -24,7 +24,7 @@
     educativo de la aplicación.
 */
 
-package vista;
+package co.edu.univalle.vista;
 
 public class Principal {
     public static void main(String[] args) {

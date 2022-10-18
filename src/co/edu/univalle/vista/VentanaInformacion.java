@@ -1,5 +1,5 @@
 /*
-    Archivo: VentanaInstrucciones.java
+    Archivo: VentanaInformacion.java
     Fundamentos de Programación Orientada a Eventos - 750014C Grupo 01
     Proyecto 1 - El ahorcado
 
@@ -14,33 +14,35 @@
 */
 
 /**
-    CLASE: VentanaInstrucciones
-    INTENCIÓN: Esta ventana mostrará las instrucciones del juego. Una vez leídas las instrucciones,
-    el usuario podrá volver a la Ventana Inicial para empezar una partida. 
+    CLASE: VentanaInformacion
+    INTENCIÓN: Esta ventana mostrará los beneficios del juego El Ahorcado.
+    * Una vez leído el contenido de esta ventana, el usuario podrá volver a la Ventana Inicial para empezar una partida. 
     RELACIONES:
     - Es una Ventana. 
 */
 
-package vista;
+package co.edu.univalle.vista;
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class VentanaInstrucciones extends Ventana {
+public class VentanaInformacion extends Ventana {
     // Atributos:
     private JLabel labelTitulo = new JLabel("El Ahorcado");
     private JLabel labelSubtitulo = new JLabel("Universidad del Valle");
-    private JLabel labelInstrucciones = new JLabel("Instrucciones:");    
-    private JLabel labelPrimeraInstruccion;
-    private JLabel labelSegundaInstruccion;
+    private JLabel labelBeneficios = new JLabel("Beneficios de este juego:");    
+    private JLabel labelLinea1;
+    private JLabel labelLinea2;
+    private JLabel labelLinea3;
+    private JLabel labelLinea4;
     private JPanel panelCabecera = new JPanel();
     private JPanel panelPrincipal = new JPanel();
     private JPanel panelFinal = new JPanel();
     private JButton buttonVolver = new JButton("Volver");
     
     // Constructor:
-    public VentanaInstrucciones(){
+    public VentanaInformacion(){
         
         // Listeners:
         buttonVolver.addActionListener(this);
@@ -50,8 +52,9 @@ public class VentanaInstrucciones extends Ventana {
         northPanel.setBackground(new Color(79, 198, 198));
         panelCabecera.setLayout(new GridLayout(2, 1));
         panelCabecera.setBackground(new Color(0, 0, 0, 0));
-        panelPrincipal.setLayout(new GridLayout(5, 1, 0, 5));
-        panelPrincipal.setPreferredSize(new Dimension(370, 270));
+        panelPrincipal.setLayout(new GridLayout(6, 1, 0, 5));
+        panelPrincipal.setPreferredSize(new Dimension(500, 300));
+
 
         // Añadidos de ventana inicial. 
         labelTitulo.setFont(new Font("Arial", Font.BOLD, 34));
@@ -62,16 +65,22 @@ public class VentanaInstrucciones extends Ventana {
         panelCabecera.add(labelSubtitulo);
         northPanel.add(panelCabecera);
         
-        labelInstrucciones.setFont(new Font("Arial", Font.BOLD, 20));
-        labelPrimeraInstruccion = new JLabel("<html>* Haz clic con el mouse sobre las letras del abecedario para adivinar la palabra escondida.</html>");
-        labelPrimeraInstruccion.setFont(new Font("Arial", Font.PLAIN, 14));
-        labelSegundaInstruccion = new JLabel("<html>* A medida que vas adivinando la palabra, las letras cambiarán de color: el verde indica que la letra sí hace parte de la palabra y el rojo indica lo contrario.</html>");
-        labelSegundaInstruccion.setFont(new Font("Arial", Font.PLAIN, 14));
+        labelBeneficios.setFont(new Font("Arial", Font.BOLD, 20));
+        labelLinea1 = new JLabel("<html>El ahorcado es una excelente herramienta para aprender de forma divertida y así potenciar nuestras habilidades cognitivas, lógicas y lingüísticas."
+                + " Algunos de los beneficios de este juego son: </html");
+        labelLinea1.setFont(new Font("Arial", Font.PLAIN, 14));
+        labelLinea2 = new JLabel("<html>* Aumenta la retentiva y desarrolla la capacidad lógica del jugador. </html");
+        labelLinea2.setFont(new Font("Arial", Font.PLAIN, 14));
+        labelLinea3 = new JLabel("<html>* Potencia el pensamiento creativo y la capacidad de tomar decisiones en contextos cambiantes.</html");
+        labelLinea3.setFont(new Font("Arial", Font.PLAIN, 14));
+        labelLinea4 = new JLabel("<html>* Amplía el vocabulario y mejora la ortografía. </html");
+        labelLinea4.setFont(new Font("Arial", Font.PLAIN, 14));
         panelFinal.add(buttonVolver);
-        panelPrincipal.add(labelInstrucciones);
-        panelPrincipal.add(labelPrimeraInstruccion);
-        panelPrincipal.add(labelSegundaInstruccion);
-        panelPrincipal.add(new JPanel());
+        panelPrincipal.add(labelBeneficios);
+        panelPrincipal.add(labelLinea1);
+        panelPrincipal.add(labelLinea2);
+        panelPrincipal.add(labelLinea3);
+        panelPrincipal.add(labelLinea4);
         panelPrincipal.add(panelFinal);
         centerPanel.add(panelPrincipal);
 
@@ -85,5 +94,5 @@ public class VentanaInstrucciones extends Ventana {
             dispose();
             VentanaInicio ventana = new VentanaInicio(); 
         }
-    }
+    } 
 }

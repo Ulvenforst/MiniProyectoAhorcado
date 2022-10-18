@@ -20,7 +20,7 @@
     -Conoce un jugador.
 */
 
-package logica;
+package co.edu.univalle.logica;
 import java.util.Map.Entry;
 import java.util.*;
 
